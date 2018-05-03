@@ -1,0 +1,2255 @@
+<html>
+<head>
+
+<title>LSP Patterns</title>
+<meta charset="UTF-8"/>
+<meta name="description" content="LSP Patterns"/>
+<meta name="keywords" content="LSP, pattern"/>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+
+<style type="text/css">
+
+.case {
+  border: solid gray;
+  border-width: 10 1 10 1px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.case .header h1 {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.case .description {
+  font-size: 14px;
+}
+
+.case .step {
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  border: solid gray;
+  border-width: 1 0 0 0px;
+  padding-top: 10px;
+}
+
+.case h2 {
+  font-size: 15px;
+}
+
+.display-4 {
+  margin-bottom: 25px;
+}
+
+.list-group-item.list-group-item-action.active {
+  background-color: gray;
+  border-color: gray;
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1 class="display-4">Cases for LSP</h1>
+
+<div class="row">
+
+  <div class="col-2 outline">
+
+    <div class="list-group">
+    <a href="#" class="list-group-item list-group-item-action active">
+      Cases
+    </a>
+    <a href="#case1" class="list-group-item list-group-item-action">Case 1</a>
+    <a href="#case2" class="list-group-item list-group-item-action">Case 2</a>
+    <a href="#case3" class="list-group-item list-group-item-action">Case 3</a>
+    <a href="#case4" class="list-group-item list-group-item-action">Case 4</a>
+    <a href="#case5" class="list-group-item list-group-item-action">Case 5</a>
+    <a href="#case6" class="list-group-item list-group-item-action">Case 6</a>
+    <a href="#case7" class="list-group-item list-group-item-action">Case 7</a>
+    <a href="#case8" class="list-group-item list-group-item-action">Case 8</a>
+    <a href="#case9" class="list-group-item list-group-item-action">Case 9</a>
+    <a href="#case10" class="list-group-item list-group-item-action">Case 10</a>
+    <a href="#case11" class="list-group-item list-group-item-action">Case 11</a>
+    <a href="#case12" class="list-group-item list-group-item-action">Case 12</a>
+    <a href="#case13" class="list-group-item list-group-item-action">Case 13</a>
+  </div>
+
+  </div> <!-- col-2 -->
+
+  <div class="col-10"> 
+
+    <!-- ####################################################################################### -->
+    <!-- ################################## CASE DEFINITION #################################### -->
+    <!-- ####################################################################################### -->
+    <div class="row case">
+      <div class="col-12 header">
+        <h1 id="case1">Case 1</h1>
+        <p class="description">
+          Creating a node in an incorrect place
+        </p>
+      </div> 
+      <!-- STEP 1 -->
+      <div class="col-12 step">Step 1. The Client performs an incorrect modification and notifies the server</div>
+      <div class="col-4">
+        <h2>Model at client-side (before)</h2>
+        <pre><code>
+{ 
+  "elements" : [
+       ...
+  ]
+}
+        </code></pre>
+      </div>
+      <div class="col-4">
+        <h2>Model at client-side (after)</h2>
+        <pre><code>
+{
+  "elements" : [
+    "node" : {
+      "id" : "el1",
+      "type" : "enumliteral",
+      "metadata" : {
+           ...
+      },
+      "style" : {
+        widht : 10,
+        Height : 5
+      },
+      "layout" : {
+        x : 15,
+        y : 15
+      },
+      ...
+    },
+    ...
+  ]
+}
+        </code></pre>
+      </div>
+      <div class="col-4">
+        <h2>To the server</h2>
+        <pre><code>
+NotificationMessage {
+  method : "textDocument/didChange",
+  params :    {
+    textDocument : {
+      version : 2
+    },
+    contentChanges : [ 
+      { range : {
+          start : {
+            line : 02,
+            character : C1
+          },
+          end : {
+            line : 17,
+            character : C2
+          }
+        }
+        rangeLength : X,
+        text : "node: { ... },"
+      }
+   ]
+  }
+}
+        </code></pre>
+      </div>
+      <!-- STEP 2 -->
+      <div class="col-12 step">Step 2. The server revert the changes</div>
+      <div class="col-4">
+        <h2>Model at client-side (before)</h2>
+        <pre><code>
+{
+  "elements" : [
+    "node" : {
+      "id" : "el1",
+      "type" : "enumliteral",
+      "metadata" : {
+           ...
+      },
+      "style" : {
+        widht : 10,
+        Height : 5
+      },
+      "layout" : {
+        x : 15,
+        y : 15
+      },
+      ...
+    },
+    ...
+  ]
+}
+
+        </code></pre>
+      </div>
+      <div class="col-4">
+        <h2>Model at client-side (after)</h2>
+        <pre><code>
+{
+  "elements" : [
+       ...
+  ]
+}
+
+        </code></pre>
+      </div>
+      <div class="col-4">
+        <h2>From server</h2>
+        <pre><code>
+RequestMessage {
+  Jsonrpc : "2.0",
+  id : "0001",
+  method: "workspace/ApplyEdit",
+  params : {
+    edit : {
+      documentChanges : [
+        {
+         textDocument : { version: 2 },
+         edits : [
+           { range : {
+               start : {
+                 line : 02,
+                 character : C1
+               },
+               end : {
+                 line : 17,
+                 character : C2
+                }
+             },
+             newtext: ""
+           }
+         ]
+      ]
+    }
+  }
+}
+        </code></pre>
+      </div>
+      <!-- STEP 3 -->
+      <div class="col-12 step">Step 3. The Client confirms the fix.</div>
+      <div class="col-4">
+      </div>
+      <div class="col-4">
+      </div>
+      <div class="col-4">
+        <h2>To the server</h2>
+        <pre><code>
+ResponseMessage{
+  jsonrpc : "2.0",
+  id : "0001",
+  result : { applied : true }
+}
+        </code></pre>
+      </div>
+
+    </div> <!-- row -->
+
+    <!-- ####################################################################################### -->
+    <!-- ################################## CASE DEFINITION #################################### -->
+    <!-- ####################################################################################### -->
+    <div class="row case">
+      <div class="col-12 header">
+        <h1 id="case2">Case 2</h1>
+        <p class="description">
+          Creating an edge without its corresponding ends.
+
+        </p>
+      </div> 
+      <!-- STEP 1 -->
+      <div class="col-12 step">Step 1. The Client performs an incorrect modification and notifies the server</div>
+      <div class="col-4">
+        <h2>Model at client-side (before)</h2>
+        <pre><code>
+{
+  "elements" : []
+}
+        </code></pre>
+      </div>
+      <div class="col-4">
+        <h2>Model at client-side (after)</h2>
+        <pre><code>
+{
+  "elements" : [
+    "edge" : {
+      "id" : "e1",
+      "type" : "association",
+      "origin" : null,
+      "target" : null,
+      "metadata" : {
+        "name" : "",
+        "Visibility" : "true",
+        "Member ends" : 
+        {
+           "Name" : "",
+           "Owner": "",
+           "Navigable": "false",
+           "Aggregation": ""
+           "Multiplicity": ""
+        },
+        {
+           "Name" : "",
+           "Owner": "",
+           "Navigable": "false",
+           "Aggregation": ""
+           "Multiplicity": ""
+        }
+       ]
+      }
+      ...
+    }
+  ]
+        </code></pre>
+      </div>
+      <div class="col-4">
+        <h2>To the server</h2>
+        <pre><code>
+NotificationMessage {
+  method : "textDocument/didChange",
+  params :    {
+    textDocument : {
+      version : 2
+    },
+    contentChanges : {
+      range : {
+        start : {
+          line : 2,
+          character : 17
+        },
+        end : {
+          line : 30,
+          character : 6
+        }
+      },
+      rangeLength : X,
+      text : [all red hihglighted text]
+    }
+  }
+}
+        </code></pre>
+      </div>
+      <!-- STEP 2 -->
+      <div class="col-12 step">Step 2. The server revert the changes</div>
+      <div class="col-4">
+        <h2>Model at client-side (before)</h2>
+        <pre><code>
+{
+  "elements" : [
+    "edge" : {
+      "id" : "e1",
+      "type" : "association",
+      "origin" : null,
+      "Target" : null,
+      "metadata" : {
+        "name" : "",
+        "Visibility" : "true",
+        "Member ends" : 
+        {
+           "Name" : "",
+           "Owner": "",
+           "Navigable": "false",
+           "Aggregation": ""
+           "Multiplicity": ""
+        },
+        {
+           "Name" : "",
+           "Owner": "",
+           "Navigable": "false",
+           "Aggregation": ""
+           "Multiplicity": ""
+        }
+       ]
+      }
+      ...
+    }
+  ]
+}
+        </code></pre>
+      </div>
+      <div class="col-4">
+        <h2>Model at client-side (after)</h2>
+        <pre><code>
+{
+  "elements" : []
+}
+        </code></pre>
+      </div>
+      <div class="col-4">
+        <h2>From server</h2>
+        <pre><code>
+RequestMessage {
+  Jsonrpc : "2.0",
+  id : "0001",
+  method: "workspace/ApplyEdit",
+  params : {
+    edit : {
+      documentChanges : [
+        {
+         textDocument : { version: 2 },
+         edits : [
+           { range : {
+               start : {
+                 line : 2,
+                 character : 17
+               },
+               end : {
+                 line : 30,
+                 character : 6
+                }
+             },
+             newtext: ""
+           }
+         ]
+      ]
+    }
+  }
+}
+
+        </code></pre>
+      </div>
+      <!-- STEP 3 -->
+      <div class="col-12 step">Step 3. The Client confirms the fix.</div>
+      <div class="col-4">
+      </div>
+      <div class="col-4">
+      </div>
+      <div class="col-4">
+        <h2>To the server</h2>
+        <pre><code>
+ResponseMessage{
+  jsonrpc : "2.0",
+  id : "0001",
+  result : { applied : true }
+}
+        </code></pre>
+      </div>
+
+    </div> <!-- row -->    
+
+
+    <!-- ####################################################################################### -->
+    <!-- ################################## CASE DEFINITION #################################### -->
+    <!-- ####################################################################################### -->
+    <div class="row case">
+      <div class="col-12 header">
+        <h1 id="case3">Case 3</h1>
+        <p class="description">
+          Deleting a node related to others
+        </p>
+      </div> 
+      <!-- STEP 1 -->
+      <div class="col-12 step">Step 1. The Client performs a modification and notifies the server</div>
+      <div class="col-4">
+        <h2>Model at client-side (before)</h2>
+        <pre><code>
+{
+  "elements" : [
+    "node" : {
+      "id" : "c1",
+      "type" : "class",
+      "metadata" : {
+           name : "C1",
+         qualifiedName : "RootElement::P1::C1",
+           ...
+      },
+      "style" : {
+        widht : 20,
+        Height : 20
+      },
+      "layout" : {
+        x : 15,
+        y : 15
+      },
+      ...
+    },
+    "node" : {
+      "id" : "p1",
+      "type" : "package",
+      "metadata" : {
+         name : "P1",
+         ...
+      }
+      "style" : {
+        widht : 100,
+        Height : 100
+      },
+      "layout" : {
+        x : 0,
+        y : 0
+      },
+      ...
+    },
+    ...
+    "edge" : {
+      "id" : "e1",
+      "type" : "ownedClasses",
+      "group" : "true",
+      "origin" : "p1",
+      "target" : "c1",
+      "metadata" : {
+         ...
+      }
+      ...
+    }
+    ...
+  ]
+}
+        </code></pre>
+      </div>
+      <div class="col-4">
+        <h2>Model at client-side (after)</h2>
+        <pre><code>
+{
+  "elements" : [
+    "node" : {
+      "id" : "c1",
+      "type" : "class",
+      "metadata" : {
+           name : "C1",
+         qualifiedName : "RootElement::P1::C1",
+           ...
+      },
+      "style" : {
+        widht : 20,
+        Height : 20
+      },
+      "layout" : {
+        x : 15,
+        y : 15
+      },
+      ...
+    },
+...
+      ...
+    },
+    ...
+    "edge" : {
+      "id" : "e1",
+      "type" : "ownedClasses",
+      "group" : "true",
+      "origin" : "p1",
+      "target" : "c1",
+      "metadata" : {
+         ...
+      }
+      ...
+    }
+    ...
+  ]
+}
+
+        </code></pre>
+      </div>
+      <div class="col-4">
+        <h2>To the server</h2>
+        <pre><code>
+NotificationMessage {
+  method : "textDocument/didChange",
+  params :    {
+    textDocument : {
+      version : 2
+    },
+    contentChanges : [ 
+      { range : {
+          start : {
+            line : 20,
+            character : C1
+          },
+          end : {
+            line : 34,
+            character : C2
+          }
+        }
+        rangeLength : X,
+        text : ""
+      }
+   ]
+  }
+}
+        </code></pre>
+      </div>
+      <!-- STEP 2 -->
+      <div class="col-12 step">Step 2. The server applies the changes and modifies the involved elements in the model</div>
+      <div class="col-4">
+        <h2>Model at client-side (before)</h2>
+        <pre><code>
+{
+  "elements" : [
+    "node" : {
+      "id" : "c1",
+      "type" : "class",
+      "metadata" : {
+           name : "C1",
+         qualifiedName : "RootElement::P1::C1",
+           ...
+      },
+      "style" : {
+        widht : 20,
+        Height : 20
+      },
+      "layout" : {
+        x : 105,
+        y : 105
+      },
+      ...
+    },
+    "edge" : {
+      "id" : "e1",
+      "type" : "ownedClasses",
+      "group" : "true",
+      "origin" : "p1",
+      "target" : "c1",
+      "metadata" : {
+         ...
+      }
+      ...
+    }
+    ...
+  ]
+}
+        </code></pre>
+      </div>
+      <div class="col-4">
+        <h2>Model at client-side (after)</h2>
+        <pre><code>
+{
+  "elements" : [
+       ...
+  ]
+}
+        </code></pre>
+      </div>
+      <div class="col-4">
+        <h2>From server</h2>
+        <pre><code>
+RequestMessage {
+  Jsonrpc : "2.0",
+  id : "0001",
+  method: "workspace/ApplyEdit",
+  params : {
+    edit : {
+      documentChanges : [
+        {
+         textDocument : { version: 2 },
+         edits : [
+           { range : {
+               start : {
+                 line : 02,
+                 character : C1
+               },
+               end : {
+                 line : 19,
+                 character : C2
+                }
+             },
+             newtext: ""
+           },
+           { range : {
+               start : {
+                 line : 20,
+                 character : C1
+               },
+               end : {
+                 line : 30,
+                 character : C2
+                }
+             },
+             newtext: ""
+           }
+
+         ]
+      ]
+    }
+  }
+}
+        </code></pre>
+      </div>
+      <!-- STEP 3 -->
+      <div class="col-12 step">Step 3. The Client confirms the changes.</div>
+      <div class="col-4">
+      </div>
+      <div class="col-4">
+      </div>
+      <div class="col-4">
+        <h2>To the server</h2>
+        <pre><code>
+ResponseMessage{
+  jsonrpc : "2.0",
+  id : "0001",
+  result : { applied : true }
+}
+        </code></pre>
+      </div>
+
+    </div> <!-- row -->
+
+    <!-- ####################################################################################### -->
+    <!-- ################################## CASE DEFINITION #################################### -->
+    <!-- ####################################################################################### -->
+    <div class="row case">
+      <div class="col-12 header">
+        <h1 id="case4">Case 4</h1>
+        <p class="description">
+          Moving a class out of a package
+        </p>
+      </div> 
+      <!-- STEP 1 -->
+      <div class="col-12 step">Step 1. The Client performs the changes to make the movement</div>
+      <div class="col-4">
+        <h2>Model at client-side (before)</h2>
+        <pre><code>
+{
+  "elements" : [
+    "node" : {
+      "id" : "c1",
+      "type" : "class",
+      "metadata" : {
+           name : "C1",
+         qualifiedName : "RootElement::P1::C1",
+           ...
+      },
+      "style" : {
+        widht : 20,
+        Height : 20
+      },
+      "layout" : {
+        x : 15,
+        y : 15
+      },
+      ...
+    },
+    "node" : {
+      "id" : "p1",
+      "type" : "package",
+      "metadata" : {
+         name : "P1",
+         ...
+      }
+      "style" : {
+        widht : 100,
+        Height : 100
+      },
+      "layout" : {
+        x : 0,
+        y : 0
+      },
+
+      ...
+    },
+    ...
+    "edge" : {
+      "id" : "e1",
+      "type" : "ownedClasses",
+      "group" : "true",
+      "origin" : "p1",
+      "target" : "c1",
+      "metadata" : {
+         ...
+      }
+      ...
+    }
+    ...
+  ]
+}
+        </code></pre>
+      </div>
+      <div class="col-4">
+        <h2>Model at client-side (after)</h2>
+        <pre><code>
+{
+  "elements" : [
+    "node" : {
+      "id" : "c1",
+      "type" : "class",
+      "metadata" : {
+           name : "C1",
+         qualifiedName : "RootElement::P1::C1",
+           ...
+      },
+      "style" : {
+        widht : 20,
+        Height : 20
+      },
+      "layout" : {
+        x : 105,
+        y : 105
+      },
+      ...
+    },
+    "node" : {
+      "id" : "p1",
+      "type" : "package",
+      "metadata" : {
+         name : "P1",
+         ...
+      }
+      "style" : {
+        widht : 100,
+        Height : 100
+      },
+      "layout" : {
+        x : 0,
+        y : 0
+      },
+
+      ...
+    },
+    ...
+    "edge" : {
+      "id" : "e1",
+      "type" : "ownedClasses",
+      "group" : "true",
+      "origin" : "p1",
+      "target" : "c1",
+      "metadata" : {
+         ...
+      }
+      ...
+    }
+    ...
+  ]
+}
+        </code></pre>
+      </div>
+      <div class="col-4">
+        <h2>To the server</h2>
+        <pre><code>
+NotificationMessage {
+  method : "textDocument/didChange",
+  params :    {
+    textDocument : {
+      version : 2
+    },
+    contentChanges : [ 
+      { range : {
+          start : {
+            line : 15,
+            character : C1
+          },
+          end : {
+            line : 15,
+            character : C2
+          }
+        }
+        rangeLength : X,
+        text : "105"
+      },
+      { range : {
+          start : {
+            line : 16,
+            character : C1
+          },
+          end : {
+            line : 16,
+            character : C2
+          }
+        }
+        rangeLength : X,
+        text : "105"
+     }
+   ]
+  }
+}
+        </code></pre>
+      </div>
+      <!-- STEP 2 -->
+      <div class="col-12 step">Step 2. The server interprets the movement and updates the IRF</div>
+      <div class="col-4">
+        <h2>Model at client-side (before)</h2>
+        <pre><code>
+{
+  "elements" : [
+    "node" : {
+      "id" : "c1",
+      "type" : "class",
+      "metadata" : {
+           name : "C1",
+         qualifiedName : "RootElement::C1",
+           ...
+      },
+      "style" : {
+        widht : 20,
+        Height : 20
+      },
+      "layout" : {
+        x : 105,
+        y : 105
+      },
+      ...
+    },
+    "node" : {
+      "id" : "p1",
+      "type" : "package",
+      "metadata" : {
+         name : "P1",
+         ...
+      }
+      "style" : {
+        widht : 100,
+        Height : 100
+      },
+      "layout" : {
+        x : 0,
+        y : 0
+      },
+
+      ...
+    },
+    ...
+    "edge" : {
+      "id" : "e1",
+      "type" : "ownedClasses",
+      "group" : "true",
+      "origin" : "p1",
+      "target" : "c1",
+      "metadata" : {
+         ...
+      }
+      ...
+    }
+    ...
+  ]
+}
+        </code></pre>
+      </div>
+      <div class="col-4">
+        <h2>Model at client-side (after)</h2>
+        <pre><code>
+{
+  "elements" : [
+    "node" : {
+      "id" : "c1",
+      "type" : "class",
+      "metadata" : {
+           name : "C1",
+         qualifiedName : "RootElement::P1::C1",
+           ...
+      },
+      "style" : {
+        widht : 20,
+        Height : 20
+      },
+      "layout" : {
+        x : 105,
+        y : 105 
+      },
+      ...
+    },
+    "node" : {
+      "id" : "p1",
+      "type" : "package",
+      "metadata" : {
+         name : "P1",
+         ...
+      }
+      "style" : {
+        widht : 100,
+        Height : 100
+      },
+      "layout" : {
+        x : 0,
+        y : 0
+      },
+
+      ...
+    },
+      ...
+    }
+    ...
+  ]
+}
+        </code></pre>
+      </div>
+      <div class="col-4">
+        <h2>From server</h2>
+        <pre><code>
+RequestMessage {
+  Jsonrpc : "2.0",
+  id : "0001",
+  method: "workspace/ApplyEdit",
+  params : {
+    edit : {
+      documentChanges : [
+        {
+         textDocument : { version: 2 },
+         edits : [
+           { range : {
+               start : {
+                 line : 7,
+                 character : C1
+               },
+               end : {
+                 line : 7,
+                 character : C2
+                }
+             },
+             newtext: "RootElement::P1::C1"
+           },
+           { range : {
+               start : {
+                 line : 39,
+                 character : C1
+               },
+               end : {
+                 line : 49,
+                 character : C2
+                }
+             },
+             newtext: ""
+           }
+
+         ]
+      ]
+    }
+  }
+}
+        </code></pre>
+      </div>
+      <!-- STEP 3 -->
+      <div class="col-12 step">Step 3. The Client confirms the fix.</div>
+      <div class="col-4">
+      </div>
+      <div class="col-4">
+      </div>
+      <div class="col-4">
+        <h2>To the server</h2>
+        <pre><code>
+ResponseMessage{
+  jsonrpc : "2.0",
+  id : "0001",
+  result : { applied : true }
+}
+        </code></pre>
+      </div>
+    </div> <!-- row -->
+
+
+    <!-- ####################################################################################### -->
+    <!-- ################################## CASE DEFINITION #################################### -->
+    <!-- ####################################################################################### -->
+    <div class="row case">
+      <div class="col-12 header">
+        <h1 id="case5">Case 5</h1>
+        <p class="description">
+          Moving a class into a package
+        </p>
+        <p class="description">In this case, we are strictly following how Papyrus deals with this kind of situation. It considers that a class is semantically put inside of a package when its box fits completely into the package’s one. This movement (drag &amp; drop) then implies semantic so the server should respond with the necessary information to update all the elements involved. Papyrus always behaves the same. However, other editors (for other languages) might behave differently, e.g. there might be different ways to relate an element (wheels) to another one (car).</p>
+      </div> 
+      <!-- STEP 1 -->
+      <div class="col-12 step">Step 1. The Client performs the changes to make the movement</div>
+      <div class="col-4">
+        <h2>Model at client-side (before)</h2>
+        <pre><code>
+{
+  "elements" : [
+    "node" : {
+      "id" : "c1",
+      "type" : "class",
+      "metadata" : {
+           name : "C1",
+         qualifiedName : "RootElement::C1",
+           ...
+      },
+      "style" : {
+        widht : 20,
+        Height : 20
+      },
+      "layout" : {
+        x : 105,
+        y : 105
+      },
+      ...
+    },
+    "node" : {
+      "id" : "p1",
+      "type" : "package",
+      "metadata" : {
+         name : "P1",
+         ...
+      }
+      "style" : {
+        widht : 100,
+        Height : 100
+      },
+      "layout" : {
+        x : 0,
+        y : 0
+      },
+
+      ...
+    },
+    ...
+  ]
+}
+        </code></pre>
+      </div>
+      <div class="col-4">
+        <h2>Model at client-side (after)</h2>
+        <pre><code>
+{
+  "elements" : [
+    "node" : {
+      "id" : "c1",
+      "type" : "class",
+      "metadata" : {
+           name : "C1",
+         qualifiedName : "RootElement::C1",
+           ...
+      },
+      "style" : {
+        widht : 20,
+        Height : 20
+      },
+      "layout" : {
+        x : 15,
+        y : 15
+      },
+      ...
+    },
+    "node" : {
+      "id" : "p1",
+      "type" : "package",
+      "metadata" : {
+         name : "P1",
+         ...
+      }
+      "style" : {
+        widht : 100,
+        Height : 100
+      },
+      "layout" : {
+        x : 0,
+        y : 0
+      },
+
+      ...
+    },
+    ...
+  ]
+}
+
+        </code></pre>
+      </div>
+      <div class="col-4">
+        <h2>To the server</h2>
+        <pre><code>
+NotificationMessage {
+  method : "textDocument/didChange",
+  params :    {
+    textDocument : {
+      version : 2
+    },
+    contentChanges : [ 
+      { range : {
+          start : {
+            line : 15,
+            character : C1
+          },
+          end : {
+            line : 15,
+            character : C2
+          }
+        }
+        rangeLength : X,
+        text : "15"
+      },
+      { range : {
+          start : {
+            line : 16,
+            character : C1
+          },
+          end : {
+            line : 16,
+            character : C2
+          }
+        }
+        rangeLength : X,
+        text : "15"
+     }
+   ]
+  }
+}
+        </code></pre>
+      </div>
+      <!-- STEP 2 -->
+      <div class="col-12 step">Step 2. The server interprets the movement and updates the IRF</div>
+      <div class="col-4">
+        <h2>Model at client-side (before)</h2>
+        <pre><code>
+{
+  "elements" : [
+    "node" : {
+      "id" : "c1",
+      "type" : "class",
+      "metadata" : {
+           name : "C1",
+         qualifiedName : "RootElement::C1",
+           ...
+      },
+      "style" : {
+        widht : 20,
+        Height : 20
+      },
+      "layout" : {
+        x : 15,
+        y : 15
+      },
+      ...
+    },
+    "node" : {
+      "id" : "p1",
+      "type" : "package",
+      "metadata" : {
+         name : "P1",
+         ...
+      }
+      "style" : {
+        widht : 100,
+        Height : 100
+      },
+      "layout" : {
+        x : 0,
+        y : 0
+      },
+
+      ...
+    },
+    ...
+  ]
+}
+
+        </code></pre>
+      </div>
+      <div class="col-4">
+        <h2>Model at client-side (after)</h2>
+        <pre><code>
+{
+  "elements" : [
+    "node" : {
+      "id" : "c1",
+      "type" : "class",
+      "metadata" : {
+           name : "C1",
+         qualifiedName : "RootElement::P1::C1",
+           ...
+      },
+      "style" : {
+        widht : 20,
+        Height : 20
+      },
+      "layout" : {
+        x : 15,
+        y : 15
+      },
+      ...
+    },
+    "node" : {
+      "id" : "p1",
+      "type" : "package",
+      "metadata" : {
+         name : "P1",
+         ...
+      }
+      "style" : {
+        widht : 100,
+        Height : 100
+      },
+      "layout" : {
+        x : 0,
+        y : 0
+      },
+
+      ...
+    },
+    ...
+    "edge" : {
+      "id" : "e1",
+      "type" : "ownedClasses",
+      "group" : "true",
+      "origin" : "p1",
+      "target" : "c1",
+      "metadata" : {
+         ...
+      }
+      ...
+    }
+    ...
+  ]
+}
+        </code></pre>
+      </div>
+      <div class="col-4">
+        <h2>From server</h2>
+        <pre><code>
+RequestMessage {
+  Jsonrpc : "2.0",
+  id : "0001",
+  method: "workspace/ApplyEdit",
+  params : {
+    edit : {
+      documentChanges : [
+        {
+         textDocument : { version: 2 },
+         edits : [
+           { range : {
+               start : {
+                 line : 7,
+                 character : C1
+               },
+               end : {
+                 line : 7,
+                 character : C2
+                }
+             },
+             newtext: "RootElement::P1::C1"
+           },
+           { range : {
+               start : {
+                 line : 39,
+                 character : C1
+               },
+               end : {
+                 line : 47,
+                 character : C2
+                }
+             },
+             newtext: ""edge" : { ... }"
+           }
+
+         ]
+      ]
+    }
+  }
+}
+        </code></pre>
+      </div>
+      <!-- STEP 3 -->
+      <div class="col-12 step">Step 3. The Client confirms the fix.</div>
+      <div class="col-4">
+      </div>
+      <div class="col-4">
+      </div>
+      <div class="col-4">
+        <h2>To the server</h2>
+        <pre><code>
+ResponseMessage{
+  jsonrpc : "2.0",
+  id : "0001",
+  result : { applied : true }
+}
+        </code></pre>
+      </div>
+    </div> <!-- row -->
+
+    <!-- ####################################################################################### -->
+    <!-- ################################## CASE DEFINITION #################################### -->
+    <!-- ####################################################################################### -->
+    <div class="row case">
+      <div class="col-12 header">
+        <h1 id="case6">Case 6</h1>
+        <p class="description">
+          Moving nodes and edges without nested (not grouped) nodes and overlapping
+        </p>
+        <p class="description">
+          <em>(IRF and protocol messages not shown due to similarity to previous cases)</em>
+        </p>
+      </div> 
+      <!-- STEP 1 -->
+      <div class="col-12 step">Step 1. A user selects a group of nodes and/or edges and moves them</div>
+      <div class="col-12 step">Step 2. All the positions are updated in the <code>textDocument</code> for all the involved nodes and edges</div>
+      <div class="col-12 step">Step 3. LSP notification <code>didChange</code></div>
+      <div class="col-12 step">Step 4. If any correction has to be done, the server would respond with a <code>ApplyEdit</code> request</div>
+      <div class="col-12 step">Step 5. If any problem is detected implyes user intervention, the server would respond with a <code>publishDiagnostic</code> notification</div>
+    </div> <!-- row -->
+
+
+    <!-- ####################################################################################### -->
+    <!-- ################################## CASE DEFINITION #################################### -->
+    <!-- ####################################################################################### -->
+    <div class="row case">
+      <div class="col-12 header">
+        <h1 id="case7">Case 7</h1>
+        <p class="description">
+          Moving nodes and edges with nested (grouped) nodes
+        </p>
+        <p class="description">
+          <em>(IRF and protocol messages not shown due to similarity to previous cases)</em>
+        </p>
+      </div> 
+      <div class="col-12 step">Step 1. A user moves (drags &amp; drop) a node with nested elements inside (e.g., package with classes)</div>
+      <div class="col-12 step">Step 2. Editor moves at the same time the node and all its components (editor has enough information for that in the IRF)</div>
+      <div class="col-12 step">Step 3. All the positions are updated in the <code>textDocument</code> for all the involved nodes and edges</div>
+      <div class="col-12 step">Step 4. LSP notification <code>didChange</code></div>
+      <div class="col-12 step">Step 5. If any correction has to be done, the server would respond with a <code>ApplyEdit</code> request</div>
+      <div class="col-12 step">Step 6. If any problem is detected implyes user intervention, LS would respond with a publishDiagnostic notification</div>
+      <div class="col-12 step">Step 7. If the editor is not able to move all the related elements by itself, then it conceivable would move the root node and the server would instruct to move its components by means of an <code>ApplyEdit</code> request</div>
+    </div> <!-- row -->
+
+
+    <!-- ####################################################################################### -->
+    <!-- ################################## CASE DEFINITION #################################### -->
+    <!-- ####################################################################################### -->
+    <div class="row case">
+      <div class="col-12 header">
+        <h1 id="case8">Case 8</h1>
+        <p class="description">
+          Modifying the metadata of a node or an edge
+        </p>
+        <p class="description">
+          <em>(IRF and protocol messages not shown due to similarity to previous cases)</em>
+        </p>
+      </div> 
+      <div class="col-12 step">Step 1. A user selects an edge (e.g., an association)</div>
+      <div class="col-12 step">Step 2. Editor may present a properties View to edit its metadata</div>
+      <div class="col-12 step">Step 3. User edit the metadata property (e.g., the cardinality field)</div>
+      <div class="col-12 step">Step 4. Editor requests the server for completion items to fill a dropdown list</code></div>
+      <div class="col-12 step">Step 5. User selects an value for the metadata property (e.g., a valid cardinality value)</div>
+      <div class="col-12 step">Step 6. Editor apply <code>TextEdit</code> for that choice</div>
+      <div class="col-12 step">Step 7. LSP notification <code>didChange</code></div>
+      <div class="col-12 step">Step 8. If any correction has to be done, the server would respond with a <code>ApplyEdit</code> request</div>
+      <div class="col-12 step">Step 9. If any problem is detected implyes user intervention, LS would respond with a publishDiagnostic notification</div>
+    </div> <!-- row -->
+
+
+    <!-- ####################################################################################### -->
+    <!-- ################################## CASE DEFINITION #################################### -->
+    <!-- ####################################################################################### -->
+    <div class="row case">
+      <div class="col-12 header">
+        <h1 id="case9">Case 9</h1>
+        <p class="description">
+          Updating nodes' or edges' name
+        </p>
+      </div> 
+      <!-- STEP 1 -->
+      <div class="col-12 step">Step 1. The Client performs the changes to make the rename</div>
+      <div class="col-4">
+        <h2>Model at client-side (before)</h2>
+        <pre><code>
+{
+  "elements" : [
+    "node" : {
+      "id" : "c1",
+      "type" : "class",
+      "metadata" : {
+           name : "C1",
+         qualifiedName : "RootElement::P1::C1",
+           ...
+      },
+      "style" : {
+        widht : 20,
+        Height : 20
+      },
+      "layout" : {
+        x : 15,
+        y : 15
+      },
+      ...
+    },
+    "node" : {
+      "id" : "p1",
+      "type" : "package",
+      "metadata" : {
+         name : "P1",
+         ...
+      }
+      "style" : {
+        widht : 100,
+        Height : 100
+      },
+      "layout" : {
+        x : 0,
+        y : 0
+      },
+
+      ...
+    },
+    ...
+    "edge" : {
+      "id" : "e1",
+      "type" : "ownedClasses",
+      "group" : "true",
+      "origin" : "p1",
+      "target" : "c1",
+      "metadata" : {
+         ...
+      }
+      ...
+    }
+    ...
+  ]
+}
+        </code></pre>
+      </div>
+      <div class="col-4">
+        <h2>Model at client-side (after)</h2>
+        <pre><code>
+{
+  "elements" : [
+    "node" : {
+      "id" : "c1",
+      "type" : "class",
+      "metadata" : {
+           name : "C1",
+         qualifiedName : "RootElement::P1::C1",
+           ...
+      },
+      "style" : {
+        widht : 20,
+        Height : 20
+      },
+      "layout" : {
+        x : 15,
+        y : 15
+      },
+      ...
+    },
+    "node" : {
+      "id" : "p1",
+      "type" : "package",
+      "metadata" : {
+         name : "PCK1",
+         ...
+      }
+      "style" : {
+        widht : 100,
+        Height : 100
+      },
+      "layout" : {
+        x : 0,
+        y : 0
+      },
+
+      ...
+    },
+    ...
+    "edge" : {
+      "id" : "e1",
+      "type" : "ownedClasses",
+      "group" : "true",
+      "origin" : "p1",
+      "target" : "c1",
+      "metadata" : {
+         ...
+      }
+      ...
+    }
+    ...
+  ]
+}
+        </code></pre>
+      </div>
+      <div class="col-4">
+        <h2>To the server</h2>
+        <pre><code>
+RequestMessage {
+  jsonrpc : "2.0",
+  id : "0001",
+  method : "textDocument/rename",
+  params : {
+    textDocument : {
+      uri : "URI"
+    },
+    position : {
+      line : 24,
+      character : C1
+    },
+    newName = "PCK1"
+  }
+}
+        </code></pre>
+      </div>
+      <!-- STEP 2 -->
+      <div class="col-12 step">Step 2. The server interprets the change and performs the required fix</div>
+      <div class="col-4">
+        <h2>Model at client-side (before)</h2>
+        <pre><code>
+{
+  "elements" : [
+    "node" : {
+      "id" : "c1",
+      "type" : "class",
+      "metadata" : {
+           name : "C1",
+         qualifiedName : "RootElement::P1::C1",
+           ...
+      },
+      "style" : {
+        widht : 20,
+        Height : 20
+      },
+      "layout" : {
+        x : 105,
+        y : 105
+      },
+      ...
+    },
+    "node" : {
+      "id" : "p1",
+      "type" : "package",
+      "metadata" : {
+         name : "P1",
+         ...
+      }
+      "style" : {
+        widht : 100,
+        Height : 100
+      },
+      "layout" : {
+        x : 0,
+        y : 0
+      },
+
+      ...
+    },
+    ...
+    "edge" : {
+      "id" : "e1",
+      "type" : "ownedClasses",
+      "group" : "true",
+      "origin" : "p1",
+      "target" : "c1",
+      "metadata" : {
+         ...
+      }
+      ...
+    }
+    ...
+  ]
+}
+        </code></pre>
+      </div>
+      <div class="col-4">
+        <h2>Model at client-side (after)</h2>
+        <pre><code>
+{
+  "elements" : [
+    "node" : {
+      "id" : "c1",
+      "type" : "class",
+      "metadata" : {
+           name : "C1",
+         qualifiedName : "RootElement::PCK1::C1",
+           ...
+      },
+      "style" : {
+        widht : 20,
+        Height : 20
+      },
+      "layout" : {
+        x : 105,
+        y : 105 
+      },
+      ...
+    },
+    "node" : {
+      "id" : "p1",
+      "type" : "package",
+      "metadata" : {
+         name : "PCK1",
+         ...
+      }
+      "style" : {
+        widht : 100,
+        Height : 100
+      },
+      "layout" : {
+        x : 0,
+        y : 0
+      },
+
+      ...
+    },
+    ...
+    "edge" : {
+      "id" : "e1",
+      "type" : "ownedClasses",
+      "group" : "true",
+      "origin" : "p1",
+      "target" : "c1",
+      "metadata" : {
+         ...
+      }
+      ...
+    }
+    ...
+  ]
+}
+        </code></pre>
+      </div>
+      <div class="col-4">
+        <h2>From server</h2>
+        <pre><code>
+ResponsetMessage {
+  Jsonrpc : "2.0",
+  id : "0001",
+  result : {
+    edit : {
+      documentChanges : [
+        {
+         textDocument : { version: 2 },
+         edits : [
+           { range : {
+               start : {
+                 line : 7,
+                 character : C1
+               },
+               end : {
+                 line : 7,
+                 character : C2
+                }
+             },
+             newtext: "RootElement::PCK1::C1"
+           }
+         ]
+      ]
+    }
+  }
+}
+        </code></pre>
+      </div>
+    </div> <!-- row -->
+
+
+    <!-- ####################################################################################### -->
+    <!-- ################################## CASE DEFINITION #################################### -->
+    <!-- ####################################################################################### -->
+    <div class="row case">
+      <div class="col-12 header">
+        <h1 id="case10">Case 10</h1>
+        <p class="description">
+          Selecting all the nodes of a type
+        </p>
+      </div> 
+      <!-- STEP 1 -->
+      <div class="col-12 step">Step 1. The Client ask for all the elements of type <code>Class</code></div>
+      <div class="col-4">
+        <h2>Model at client-side (before)</h2>
+        <pre><code>
+{
+  "elements" : [
+    "node" : {
+      "id" : "c1",
+      "type" : "class",
+      "metadata" : {
+         ...
+      }
+      ...
+    },
+    "node" : {
+      "id" : "a1",
+      "type" : "attribute",
+      "metadata" : {
+         ...
+      }
+      ...
+    },
+    "node" : {
+      "id" : "c2",
+      "type" : "class",
+      "metadata" : {
+         ...
+      }
+      ...
+    }
+    ...
+  ]
+}
+        </code></pre>
+      </div>
+      <div class="col-4">
+        <h2>Model at client-side (after)</h2>
+      </div>
+      <div class="col-4">
+        <h2>To the server</h2>
+        <pre><code>
+RequestMessage {
+  jsonrpc : "2.0",
+  id : "0001",
+  method : "textDocument/documenSymbol",
+  params :    {
+    textDocument : {
+      uri : "<document_URI>#class"
+    }
+  }
+}
+        </code></pre>
+      </div>
+      <!-- STEP 2 -->
+      <div class="col-12 step">Step 2. The server returns the locations of the elements</div>
+      <div class="col-4">
+        <h2>Model at client-side (before)</h2>
+      </div>
+      <div class="col-4">
+        <h2>Model at client-side (after)</h2>
+        <pre><code>
+{
+  "elements" : [
+    "node" : {
+      "id" : "c1",
+      "type" : "class",
+      "metadata" : {
+         ...
+      }
+      ...
+    },
+    "node" : {
+      "id" : "a1",
+      "type" : "attribute",
+      "metadata" : {
+         ...
+      }
+      ...
+    },
+    "node" : {
+      "id" : "c2",
+      "type" : "class",
+      "metadata" : {
+         ...
+      }
+      ...
+    }
+    ...
+  ]
+}
+        </code></pre>
+      </div>
+      <div class="col-4">
+        <h2>From server</h2>
+        <pre><code>
+ResponseMessage{
+  jsonrpc : "2.0",
+  id : "0001",
+  result : [
+    { name : "c1",
+      kind : SymbolKind.Class,
+      location : {
+        uri :
+        range : {
+          start : {
+            line : 04,
+            character : C1
+          },
+          end : {
+            line : 04,
+            character : C2
+          }
+         }
+      }
+      containerName : "RootPackage"
+    },
+    { name : "c2",
+      kind : SymbolKind.Class,
+      location : {
+        uri :
+        range : {
+          start : {
+            line : 20,
+            character : C1
+          },
+          end : {
+            line : 20,
+            character : C2
+          }
+         }
+      }
+      containerName : "RootPackage"
+    } 
+  ]
+}
+        </code></pre>
+      </div>
+    </div> <!-- row -->
+
+
+    <!-- ####################################################################################### -->
+    <!-- ################################## CASE DEFINITION #################################### -->
+    <!-- ####################################################################################### -->
+    <div class="row case">
+      <div class="col-12 header">
+        <h1 id="case11">Case 11</h1>
+        <p class="description">
+          Validating the model
+        </p>
+      </div> 
+      <!-- STEP 1 -->
+      <div class="col-12 step">Step 1. The Client performs changes in the IRF and ask the server to validate</div>
+      <div class="col-4">
+        <h2>Model at client-side (before)</h2>
+        <pre><code>
+{
+  "elements" : []
+}
+
+        </code></pre>
+      </div>
+      <div class="col-4">
+        <h2>Model at client-side (after)</h2>
+        <pre><code>
+{
+  "elements" : [
+    "edge" : {
+      "id" : "e1",
+      "type" : "association",
+      "origin" : null,
+      "target" : null,
+      "metadata" : {
+        "name" : "",
+        "Visibility" : "true",
+        "Member ends" : 
+        {
+           "Name" : "",
+           "Owner": "",
+           "Navigable": "false",
+           "Aggregation": ""
+           "Multiplicity": ""
+        },
+        {
+           "Name" : "",
+           "Owner": "",
+           "Navigable": "false",
+           "Aggregation": ""
+           "Multiplicity": ""
+        }
+       ]
+      }
+      ...
+    }
+  ]
+}
+        </code></pre>
+      </div>
+      <div class="col-4">
+        <h2>To the server</h2>
+        <pre><code>
+RequestMessage {
+  Jsonrpc : "2.0",
+  id : "0001",
+  method: "textDocument/codeAction",
+  params : {
+     textDocument : { version: 2 },
+     range : {
+               start : {
+                 line : 0,
+                 character : 0
+               },
+               end : {
+                 line : N,
+                 character : M
+                }
+             },
+     context : { diagnostic : null }
+           }
+         ]
+      ]
+    }
+  }
+}
+        </code></pre>
+      </div>
+      <!-- STEP 2 -->
+      <div class="col-12 step">Step 2. </div>
+      <div class="col-4">
+        <h2>Model at client-side (before)</h2>
+        <pre><code>
+{
+  "elements" : [
+   
+  ]
+}
+        </code></pre>
+      </div>
+      <div class="col-4">
+        <h2>Model at client-side (after)</h2>
+        <pre><code>
+{
+  "elements" : [
+   
+  ]
+}
+        </code></pre>
+      </div>
+      <div class="col-4">
+        <h2>From server</h2>
+        <pre><code>
+ResponseMessage{
+  jsonrpc : "2.0",
+  id : "0001",
+  result : [
+    { title : "Validate model",
+      command : "validate",
+      arguments: null 
+    },
+    ...
+  ]
+}
+        </code></pre>
+      </div>
+      <!-- STEP 3 -->
+      <div class="col-12 step">Step 3. </div>
+      <div class="col-4">
+        <h2>Model at client-side (before)</h2>
+        <pre><code>
+        </code></pre>
+      </div>
+      <div class="col-4">
+        <h2>Model at client-side (after)</h2>
+        <pre><code>
+        </code></pre>
+      </div>
+      <div class="col-4">
+        <h2>To server</h2>
+        <pre><code>
+RequestMessage {
+  Jsonrpc : "2.0",
+  id : "0002",
+  method: "workspace/executeCommand",
+  params : {
+     command : "validate",
+     arguments : null
+  }
+}
+        </code></pre>
+      </div>      
+      <!-- STEP 4 -->
+      <div class="col-12 step">Step 4. </div>
+      <div class="col-4">
+        <h2>Model at client-side (before)</h2>
+        <pre><code>
+        </code></pre>
+      </div>
+      <div class="col-4">
+        <h2>Model at client-side (after)</h2>
+        <pre><code>
+        </code></pre>
+      </div>
+      <div class="col-4">
+        <h2>From server</h2>
+        <pre><code>
+ResponseMessage{
+  jsonrpc : "2.0",
+  id : "0002",
+  result : {
+    uri : "documentURI"
+    diagnostics : [
+      { range : {
+               start : {
+                 line : L1,
+                 character : C1
+               },
+               end : {
+                 line : L2,
+                 character : C2
+                } 
+          },
+        severity : DiagnosticSeverity.Error,
+        code : 1005,
+        source : "EMF Validator",
+        message : "Error message"
+      },
+      { range : {
+               start : {
+                 line : L3,
+                 character : C3
+               },
+               end : {
+                 line : L4,
+                 character : C4
+                }
+             }, 
+        severity : DiagnosticSeverity.Warning,
+        code : 2112,
+        source : "EMF Validator",
+        message : "Warning message"
+      },
+      ...
+     ]
+  ]
+}
+        </code></pre>
+      </div>            
+    </div> <!-- row -->
+
+
+    <!-- ####################################################################################### -->
+    <!-- ################################## CASE DEFINITION #################################### -->
+    <!-- ####################################################################################### -->
+    <div class="row case">
+      <div class="col-12 header">
+        <h1 id="case12">Case 12</h1>
+        <p class="description">
+          Completion over a node
+        </p>
+      </div> 
+      <!-- STEP 1 -->
+      <div class="col-12 step">Step 1. The user overs an element</div>
+      <div class="col-4">
+        <h2>Model at client-side (before)</h2>
+        <pre><code>
+{
+  "elements" : [
+    "node" : {
+      "id" : "c1",
+      "type" : "class",
+      "metadata" : {
+           name : "C1",
+         qualifiedName : "RootElement::C1",
+           ...
+      },
+      "style" : {
+        widht : 20,
+        Height : 20
+      },
+      "layout" : {
+        x : 15,
+        y : 15,
+        z : 5
+      },
+      ...
+    }
+    ...
+  ]
+}
+        </code></pre>
+      </div>
+      <div class="col-4">
+        <h2>Model at client-side (after)</h2>
+        <pre><code>
+{
+  "elements" : [
+    "node" : {
+      "id" : "c1",
+      "type" : "class",
+      "metadata" : {
+           name : "C1",
+         qualifiedName : "RootElement::C1",
+           ...
+      },
+      "style" : {
+        widht : 20,
+        Height : 20
+      },
+      "layout" : {
+        x : 15,
+        y : 15
+        z : 5
+      },
+      ...
+    }
+    ...
+  ]
+}
+        </code></pre>
+      </div>
+      <div class="col-4">
+        <h2>To the server</h2>
+        <pre><code>
+RequestMessage {
+  jsonrpc : "2.0",
+  id : "0001",
+  method : "textDocument/completion",
+  params :    {
+    textDocument : {
+      version : 2
+    },
+    position : {
+      line : 02,
+      character : C1
+    }
+  }
+}
+        </code></pre>
+      </div>
+      <!-- STEP 2 -->
+      <div class="col-12 step">Step 2. The server provides the information required</div>
+      <div class="col-4">
+        <h2>Model at client-side (before)</h2>
+        <pre><code>
+        </code></pre>
+      </div>
+      <div class="col-4">
+        <h2>Model at client-side (after)</h2>
+        <pre><code>
+        </code></pre>
+      </div>
+      <div class="col-4">
+        <h2>From server</h2>
+        <pre><code>
+  id : "0001",
+  result : [
+    {
+     label: "Operation",
+     kind: CompletionItemKind.Method,
+     detail: "Add Operation Component Operation Label"
+     documentation: "...",
+     sortText: "Operation",
+     filterText: "Operation",
+     insertText: " node{ type:"operation" ...}, edge{...} "
+     insertTextFormat: null,
+     textEdit: {
+       range: {
+         start : {
+           line : 02,
+           character : C1
+         },
+         end : {
+           line : 02,
+           character : C1
+         }
+       }
+       newText: " node{ type:"operation" ...}, edge{...} "
+     }
+     additionalTextEdits: null,
+     command: null,
+     data: null
+    }
+  ]
+}
+        </code></pre>
+      </div>
+ 
+    </div> <!-- row -->
+
+
+    <!-- ####################################################################################### -->
+    <!-- ################################## CASE DEFINITION #################################### -->
+    <!-- ####################################################################################### -->
+    <div class="row case">
+      <div class="col-12 header">
+        <h1 id="case13">Case 13</h1>
+        <p class="description">
+          Completion over a properties field
+        </p>
+        <p class="description">
+          <em>(IRF and protocol messages not shown due to similarity to previous cases)</em>
+        </p>
+      </div> 
+
+      <div class="col-12 step">Step 1. A user selects an element (e.g., an association)</div> 
+      <div class="col-12 step">Step 2. Editor may present a properties View to edit its metadata</div>
+      <div class="col-12 step">Step 3. User aims at changing a metadata attribute (e.g., the cardinality field)</div>
+      <div class="col-12 step">Step 4. The client requests the server for completion items to fill a dropdown list</div>
+      <div class="col-12 step">Step 5. User selects a cardinality choice</div>
+      <div class="col-12 step">Step 6. Editor apply <code>TextEdit</code> for that choice</div>
+      <div class="col-12 step">Step 7. LSP notification <code>didChange</code></div>
+      <div class="col-12 step">Step 8. If any correction has to be done, the server would respond with a <code>ApplyEdit</code> request</div>
+      <div class="col-12 step">Step 9. If any problem is detected implyes user intervention, LS would respond with a publishDiagnostic notification</div>
+    </div> <!-- row -->
+
+
+  </div> <!-- col-10 -->
+</div> <!-- row -->
+</div> <!-- container -->
+
+</body>
+</html>
