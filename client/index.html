@@ -1,0 +1,57 @@
+<html>
+<head>
+<title>LSP Client</title>
+<meta charset="UTF-8"/>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="css/joint.css">
+<script src="js/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+
+<style type="text/css">
+#paper {
+	border: 2px solid black;
+    border-radius: 5px;
+    margin: 5px;
+}
+#notification {
+	width: 100%;
+    margin: 5px;
+    font-family: 'Roboto Mono', monospace;
+	font-size: 14px;
+	line-height: 25px;
+	padding-left: 5px;
+}
+.btn {
+	margin: 5px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+	<div class="row">
+		<h1>LSP client proof-of-concept</h1>
+		<div id="paper"></div>
+	</div>
+	<div class="row">
+		<button type="button" id="initializeButton" class="btn btn-outline-primary" onclick="initialize()">Initialize</button>
+		<button type="button" id="shutdownButton"class="btn btn-outline-primary" onclick="shutdown()">Shutdown</button>
+		<button type="button" id="exitButton"class="btn btn-outline-primary" onclick="exit()">Exit</button>
+	</div>
+	<div class="row">
+		<textarea id="notification" rows="5" required>Log messages will appear here...</textarea>
+	</div>
+
+</div>
+
+<script src="js/lodash.js"></script>
+<script src="js/backbone.js"></script>
+<script src="js/joint.js"></script>
+<script src="js/polyfill.min.js"></script>
+<script src="js/simple-jsonrpc-js.min.js"></script>
+<script src="js/backend.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "script"
+    },
+    "rules": {
+        "jquery": true,
+        "browser": true,
+        "semi" : 2,
+        "indent": "error"
+    }
+}

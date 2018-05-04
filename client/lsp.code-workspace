@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "C:\\Users\\jcanovasi\\git\\vscode-extension-samples"
+		},
+		{
+			"path": "C:\\Users\\jcanovasi\\git\\vscode-languageserver-node"
+		},
+		{
+			"path": "C:\\Users\\jcanovasi\\git\\lspClient-node"
+		},
+		{
+			"path": "C:\\Users\\jcanovasi\\git\\simple-jsonrpc-js"
+		}
+	],
+	"settings": {}
+}
