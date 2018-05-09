@@ -29,4 +29,8 @@ The language server relies on the Eclipse Modeling Framework (EMF) and the Graph
 While EMF offers the core support to manage and validate models and metamodels, GMF provides the required support to define the concrete syntax of graphical languages.
 
 ### Instalation and Use
-The server has been implemented as a Java application in the Eclipse platform. It therefore relies on the [Eclipse Modeling Framework](http://www.eclipse.org/modeling/emf/) and also in the [LSP4J library](https://github.com/eclipse/lsp4j). 
+The server has been developed as a maven project, to compile and execute it, follow these steps:
+
+* add local dep for language: mvn install:install-file -Dfile=../examples/family/familymodel.jar -DgroupId=family -DartifactId=family -Dversion=1.0 -Dpackaging=jar -DgeneratePom=true
+* compile: mvn compile
+* run: mvn exec:java -Dexec.mainClass="es.unex.quercusseg.graphicalserver.LanguageServerLauncher"
