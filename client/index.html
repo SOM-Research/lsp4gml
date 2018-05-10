@@ -32,13 +32,26 @@
 
 <div class="container">
 	<div class="row">
-		<h1>LSP client proof-of-concept</h1>
+		<h1 style="margin-top: 20px;">LSP Infrastructure for Graphical Modeling</h1>
+		<p>This is a proof-of-concept prototype for our proposal to use LSP for graphical languages. The following canvas allows you to model a simple graphical language including concepts with name and edges between them.</p>
+		<p>The source code of this prototype can be found at <a href="https://github.com/SOM-Research/lsp4gml">Github</a></p>
+	</div>
+
+	<div class="row">
+		<button type="button" id="loadButton" class="btn btn-outline-primary" onclick="addNode()">Add Node</button>
+	</div>
+
+	<div class="row">
 		<div id="paper"></div>
 	</div>
+
 	<div class="row">
+		<button type="button" id="loadButton" class="btn btn-outline-primary" onclick="load()">LoadIRF</button>
 		<button type="button" id="initializeButton" class="btn btn-outline-primary" onclick="initialize()">Initialize</button>
+		<button type="button" id="initializeButton" class="btn btn-outline-primary" onclick="save()">Save</button>
 		<button type="button" id="shutdownButton"class="btn btn-outline-primary" onclick="shutdown()">Shutdown</button>
 		<button type="button" id="exitButton"class="btn btn-outline-primary" onclick="exit()">Exit</button>
+		<button type="button" id="exitButton"class="btn btn-outline-primary" onclick="printIRF()">Print IRF</button>
 	</div>
 	<div class="row">
 		<textarea id="notification" rows="5" required>Log messages will appear here...</textarea>
@@ -52,6 +65,8 @@
 <script src="js/polyfill.min.js"></script>
 <script src="js/simple-jsonrpc-js.min.js"></script>
 <script src="js/backend.js"></script>
+<script src="js/diff.js"></script>
+
 
 </body>
 </html>
