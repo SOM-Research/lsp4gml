@@ -9,6 +9,8 @@ The prototype includes:
 
 Both client editor and language server use LSP  and the Intermediate Representation Format (IRF), a JSON-based intermediate format to specify graphical models in a textual format, to communicate each other and represent graphical modeling language instances, respectively.
 
+An online version of the client/server can be found [here](http://som-research.uoc.edu/tools/lsp4gml/index.html). Please note that it is the online testing platform of the tool. You can always clone this repo and try it locally.
+
 ## The client
 
 ### Description
