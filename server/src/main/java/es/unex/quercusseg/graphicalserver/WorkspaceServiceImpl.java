@@ -1,15 +1,17 @@
 package es.unex.quercusseg.graphicalserver;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.eclipse.lsp4j.ClientCapabilities;
 import org.eclipse.lsp4j.DidChangeConfigurationParams;
 import org.eclipse.lsp4j.DidChangeWatchedFilesParams;
@@ -101,6 +103,7 @@ public class WorkspaceServiceImpl implements WorkspaceService {
 		
 		System.out.println("Workspace executeCommand invocation from the client");
 		System.out.println(params.toString());
+		System.out.println(params.toString());
 		
 		logger.info("executeCommand notification received from the client side...");
 		logger.info(params.toString());
@@ -134,52 +137,89 @@ public class WorkspaceServiceImpl implements WorkspaceService {
 			}
 			else {
 				
-				String 		  resourceURI = "";
+				String 		  resourceURI = "auxResource.txt";
+				String        irfContent  = "";
 				String 	      svgLanguage = "";
 				List <Object> arguments	  = params.getArguments();
 				
 				if(params.getCommand().equals("validate")) {
-					
-					//We do consider clients added URI resource as an argument. Client might want to validate multiple files at a time
-					for(int j = 0; j < arguments.size(); j++) {
 						
-						resourceURI = new String((String) arguments.get(j));
+					//Java client sends two parameters whereas webClient sends one
+					if(arguments.size() > 1){
 						
+						//Convert Object (wrapped as JsonPrimitive) into our resourceURI
+						Object object = arguments.get(0);
+						String objectToString = object.toString();
+						objectToString = objectToString.substring(1, objectToString.length()-1);
+						resourceURI   = objectToString; 
+
 						File file = new File(resourceURI);
-						
+
 						if(!file.exists()) {
 							
 							messageParams.setType(org.eclipse.lsp4j.MessageType.Info);
 							messageParams.setMessage("No such file " + resourceURI + " on the server side. Open it in first place and try again");
-	
+							
 							logger.info("Command 'validate' invocation over file " + resourceURI + " on the server side. File not found");
-
+							
 						}
 						else {
-							
+
 							DiagnosticConnector 	            diagnosticConnector = new DiagnosticConnector();	
 							List <org.eclipse.lsp4j.Diagnostic> diagnostics         = diagnosticConnector.getDiagnostics(diagnosticConnector.validateModel(resourceURI));					
-
+	
 							messageParams.setType(org.eclipse.lsp4j.MessageType.Info);
-							String message = "Model regarding file " + resourceURI + " has been validated" + '\n';
+							String message = "Model has been validated" + '\n';
 							message        = message + "Diagnogstics follow: " + diagnostics.toString(); 
-							
+								
 							logger.info(message);
-
+	
 							messageParams.setMessage(message);
+		
+						}
+
+					}
+					else{
+
+						//Convert Object (wrapped as JsonPrimitive) into our irf content
+						Object object         = arguments.get(0);
+						String objectToString = object.toString();
+						irfContent            = objectToString; 
+						
+						try {
+							
+							BufferedWriter writer = new BufferedWriter(new FileWriter(resourceURI));
+							writer.write(irfContent);
+							writer.close();
 							
 						}
-	
+						catch (IOException e) {e.printStackTrace();logger.info(e.toString());}
+								
+						DiagnosticConnector 	            diagnosticConnector = new DiagnosticConnector();	
+						List <org.eclipse.lsp4j.Diagnostic> diagnostics         = diagnosticConnector.getDiagnostics(diagnosticConnector.validateModel(resourceURI));					
+
+						messageParams.setType(org.eclipse.lsp4j.MessageType.Info);
+						String message = "Model has been validated" + '\n';
+						message        = message + "Diagnogstics follow: " + diagnostics.toString(); 
+							
+						logger.info(message);
+
+						messageParams.setMessage(message);
+
 					}
-					
+											
 				}
 
 				if(params.getCommand().equals("svg")) {
 					
 					//SVG language comes as a parameter
 					for(int j = 0; j < arguments.size(); j++) {
-						
-						svgLanguage = new String((String) arguments.get(j));
+
+						//Convert Object (wrapped as JsonPrimitive) into our svgLanguage
+						Object object = arguments.get(j);
+						String objectToString = object.toString();
+						objectToString = objectToString.substring(1, objectToString.length()-1);
+						svgLanguage = objectToString;
 						resourceURI = "mySVG.txt";
 						
 						File file = new File(resourceURI);
@@ -197,7 +237,7 @@ public class WorkspaceServiceImpl implements WorkspaceService {
 							
 							ClientCapabilities clientCapabilities = languageServerImpl.getClientCapabilities();
 							
-							if(clientCapabilities.getWorkspace().getApplyEdit() == false) {
+							if(languageServerImpl.doesClientApplyEdit() == false) {
 								
 								messageParams.setType(org.eclipse.lsp4j.MessageType.Info);
 								messageParams.setMessage("ApplyEdit feature is not enabled on your side. Please enable it and try again later on");
@@ -213,7 +253,7 @@ public class WorkspaceServiceImpl implements WorkspaceService {
 								try {
 									bufferedReader = new BufferedReader(new FileReader(resourceURI));
 								}
-								catch (FileNotFoundException e1) {e1.printStackTrace();}
+								catch (FileNotFoundException e1) {e1.printStackTrace(); logger.info(e1.toString());}
 								
 								StringBuilder stringBuilder   = new StringBuilder();
 								String        content         = "";
@@ -225,20 +265,20 @@ public class WorkspaceServiceImpl implements WorkspaceService {
 										stringBuilder.append(input);
 									
 					    		} 
-								catch (IOException e) {e.printStackTrace();} 
+								catch (IOException e) {e.printStackTrace(); logger.info(e.toString());} 
 								finally {
 									
 									try {
 										bufferedReader.close();
 									} 
-									catch (IOException e) {e.printStackTrace();} 
+									catch (IOException e) {e.printStackTrace(); logger.info(e.toString());} 
 									
 									content = stringBuilder.toString();
 								}
 								
 								//Inform the client about the SVG file
 								messageParams.setType(org.eclipse.lsp4j.MessageType.Info);
-								messageParams.setMessage("SVG file follows ahead. Have fun!");
+								messageParams.setMessage(content);
 								
 								logger.info("SVG file for the language " + svgLanguage + " delivered to the client...");
 								logger.info("SVG file content: " + content);
@@ -247,7 +287,7 @@ public class WorkspaceServiceImpl implements WorkspaceService {
 								VersionedTextDocumentIdentifier versionedTextDocumentIdentifier = new VersionedTextDocumentIdentifier(new Integer(1));
 								versionedTextDocumentIdentifier.setUri(resourceURI);
 								
-								languageServerImpl.applyEditClient(versionedTextDocumentIdentifier, content);
+								//languageServerImpl.applyEditClient(versionedTextDocumentIdentifier, content);
 							
 							}
 						

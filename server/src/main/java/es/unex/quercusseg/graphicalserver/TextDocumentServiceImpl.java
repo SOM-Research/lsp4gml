@@ -14,7 +14,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.eclipse.lsp4j.ClientCapabilities;
 import org.eclipse.lsp4j.CodeActionParams;
 import org.eclipse.lsp4j.CodeLens;
@@ -68,10 +68,10 @@ public class TextDocumentServiceImpl implements TextDocumentService {
 	private static Logger logger = Logging.getInstance().getLogger();
 	
 	private TextDocumentItem textDocumentItem;
-	private String 			 modifiedContent;
+	private String 			 modifiedContent = "";
 	
 	
-	/**
+		/**
 	 * The Completion request is sent from the client to the server to compute
 	 * completion items at a given cursor position. Completion items are
 	 * presented in the IntelliSense user interface. If computing complete
@@ -81,12 +81,10 @@ public class TextDocumentServiceImpl implements TextDocumentService {
 	 * 
 	 * Registration Options: CompletionRegistrationOptions
 	 */
-//	@Override
-//	public CompletableFuture <Either<List<CompletionItem>, CompletionList>> completion(
-//			TextDocumentPositionParams position) {
+	@Override
+	public CompletableFuture <Either<List<CompletionItem>, CompletionList>> completion(
+			CompletionParams position) {
 		
-		@Override
-		public CompletableFuture<Either<List<CompletionItem>, CompletionList>> completion(CompletionParams position) {
 		
 		System.out.println(position.toString());
 		System.out.println();
@@ -100,10 +98,10 @@ public class TextDocumentServiceImpl implements TextDocumentService {
 		completionItem.setDocumentation("Method completion for the file" + position.getTextDocument().getUri());
 		completionItem.setSortText("Operation");
 		completionItem.setFilterText("Operation");
-		completionItem.setInsertText("node{ type:\"operation\" ...}, edge{...}");
+		completionItem.setInsertText("node{ type:”operation” ...}, edge{...}");
 		completionItem.setInsertTextFormat(null);
 		completionItem.setTextEdit(new TextEdit(new Range(new Position(3, 1), new Position(3, 1)), 
-				new String("node{ type:\"operation\" ...}, edge{...}")));
+				new String("node{ type:”operation” ...}, edge{...}")));
 		completionItem.setAdditionalTextEdits(null);
 		completionItem.setCommand(null);
 		completionItem.setData(null);
@@ -122,7 +120,6 @@ public class TextDocumentServiceImpl implements TextDocumentService {
 	
 	}
 
-	
 	/**
 	 * The request is sent from the client to the server to resolve additional
 	 * information for a given completion item.
@@ -139,10 +136,10 @@ public class TextDocumentServiceImpl implements TextDocumentService {
 		unresolved.setDocumentation("Method completion for the file myLanguage.txt");
 		unresolved.setSortText("Operation");
 		unresolved.setFilterText("Operation");
-		unresolved.setInsertText("node{ type:\"operation\" ...}, edge{...}");
+		unresolved.setInsertText("node{ type:”operation” ...}, edge{...}");
 		unresolved.setInsertTextFormat(null);
 		unresolved.setTextEdit(new TextEdit(new Range(new Position(3, 1), new Position(3, 1)), 
-				new String("node{ type:\"operation\" ...}, edge{...}")));
+				new String("node{ type:”operation” ...}, edge{...}")));
 		unresolved.setAdditionalTextEdits(null);
 		unresolved.setCommand(null);
 		unresolved.setData(null);
@@ -547,11 +544,8 @@ public class TextDocumentServiceImpl implements TextDocumentService {
 			this.textDocumentItem = params.getTextDocument();
 			
 			
-			System.out.println("This document has been opened on the client side...");
-			System.out.println();
-			
+			System.out.println("didOpen notification received from the client side...");
 			System.out.println(this.textDocumentItem.toString());
-			System.out.println();
 			
 			System.out.print("Creating copy of the document on the server side...");
 				
@@ -572,6 +566,7 @@ public class TextDocumentServiceImpl implements TextDocumentService {
 		    catch (IOException e) {
 		    	
 		    	e.printStackTrace();
+		    	logger.info(e.toString());
 		    	
 				MessageParams messageParams = new MessageParams();
 				messageParams.setType(org.eclipse.lsp4j.MessageType.Info);
@@ -579,15 +574,14 @@ public class TextDocumentServiceImpl implements TextDocumentService {
 				
 				logger.info("Server couldn't open document " + params.getTextDocument().getUri());
 
-				languageServerImpl.notifyMessageClient(messageParams);
+				if(languageServerImpl.doesClientApplyEdit() == true)
+					languageServerImpl.notifyMessageClient(messageParams);
 
 		    }
 		  	
 			System.out.println("copy created properly");
-			System.out.println();
 
-			System.out.println("Checking model correctness...");
-			System.out.println("");
+			System.out.print("Checking model correctness...");
 			
 			logger.info("Copy created properly");
 			logger.info("Checking model correctness...");
@@ -602,8 +596,9 @@ public class TextDocumentServiceImpl implements TextDocumentService {
 				messageParams.setMessage("Document " + params.getTextDocument().getUri() + " has been correctly opened");
 				
 				logger.info("Document " + params.getTextDocument().getUri() + " has been correctly opened");
-
-				languageServerImpl.notifyMessageClient(messageParams);
+				
+				if(languageServerImpl.doesClientApplyEdit() == true)
+					languageServerImpl.notifyMessageClient(messageParams);
 			
 			}
 			else {
@@ -617,15 +612,15 @@ public class TextDocumentServiceImpl implements TextDocumentService {
 				
 				logger.info(message);
 
-				languageServerImpl.notifyMessageClient(messageParams);
+				if(languageServerImpl.doesClientApplyEdit() == true)
+					languageServerImpl.notifyMessageClient(messageParams);
 		
 			}
 			
 			logger.info("...end of document parsing");
 			
-			System.out.println();
-			System.out.println("...end of document parsing");
-			System.out.println("--------------------------------");
+			System.out.println("end of document parsing");
+			System.out.println("");
 			
 		}
 		else {
@@ -636,7 +631,8 @@ public class TextDocumentServiceImpl implements TextDocumentService {
 
 			logger.info("Client tired to open a document before completing initialization");
 
-			languageServerImpl.notifyMessageClient(messageParams);
+			if(languageServerImpl.doesClientApplyEdit() == true)
+				languageServerImpl.notifyMessageClient(messageParams);
 			
 		}		
 		
@@ -659,6 +655,7 @@ public class TextDocumentServiceImpl implements TextDocumentService {
 
 		System.out.println("Save notification received from the client side --");
 		System.out.println(params.toString());
+		System.out.println();
 		
 		//Modified content of the file --> We do store for later purpose
 		this.modifiedContent = params.getText();
@@ -667,7 +664,8 @@ public class TextDocumentServiceImpl implements TextDocumentService {
 		messageParams.setType(org.eclipse.lsp4j.MessageType.Info);
 		messageParams.setMessage("Save notification for the file " + params.getTextDocument().getUri() + " received");
 		
-		languageServerImpl.notifyMessageClient(messageParams);
+		if(languageServerImpl.doesClientApplyEdit() == true)
+			languageServerImpl.notifyMessageClient(messageParams);
 
 	}
 
@@ -687,12 +685,14 @@ public class TextDocumentServiceImpl implements TextDocumentService {
 
 		System.out.println("WillSave notification received from the client side");
 		System.out.println(params.toString());
+		System.out.println();
 		
 		MessageParams messageParams = new MessageParams();
 		messageParams.setType(org.eclipse.lsp4j.MessageType.Info);
 		messageParams.setMessage("WillSave notification for the file " + params.getTextDocument().getUri() + " received");
 		
-		languageServerImpl.notifyMessageClient(messageParams);
+		if(languageServerImpl.doesClientApplyEdit() == true)
+			languageServerImpl.notifyMessageClient(messageParams);
 		
 	}
 
@@ -708,6 +708,7 @@ public class TextDocumentServiceImpl implements TextDocumentService {
 		
 		LanguageServerImpl languageServerImpl = LanguageServerImpl.getInstance();
 		
+		System.out.println("didChange notification received from the client side...");
 		logger.info("didChange notification received from the client side...");
 		logger.info(params.toString());
 
@@ -725,7 +726,8 @@ public class TextDocumentServiceImpl implements TextDocumentService {
 				
 				logger.info("Client tried to change a document " + params.getTextDocument().getUri() + " which has not been prevo¡iously opened on the server side");
 
-				languageServerImpl.notifyMessageClient(messageParams);
+				if(languageServerImpl.doesClientApplyEdit() == true)
+					languageServerImpl.notifyMessageClient(messageParams);
 
 			}
 			else {
@@ -744,17 +746,19 @@ public class TextDocumentServiceImpl implements TextDocumentService {
 				try {
 					
 					BufferedWriter writer = new BufferedWriter(new FileWriter(auxResource));
-					writer.write(this.modifiedContent);
+					
+					if(this.modifiedContent.equals(""))
+						writer.write(params.getContentChanges().get(0).getText());
+					else
+						writer.write(this.modifiedContent);
+
 					writer.close();
 					
 				}
-			    catch (IOException e) {e.printStackTrace();}
+			    catch (IOException e) {e.printStackTrace(); logger.info(e.toString());}
 			  	
 				System.out.println("copy created properly");
-				System.out.println();
-
-				System.out.println("Checking IRF correctness...");
-				System.out.println("");
+				System.out.print("Checking IRF correctness...");
 			
 				logger.info("Copy created properly");
 				logger.info("Checking IRF correctness...");
@@ -768,14 +772,19 @@ public class TextDocumentServiceImpl implements TextDocumentService {
 					try {
 						
 						BufferedWriter writer = new BufferedWriter(new FileWriter(resourceURI));
-						writer.write(this.modifiedContent);
+						
+						if(this.modifiedContent.equals(""))
+							writer.write(params.getContentChanges().get(0).getText());
+						else
+							writer.write(this.modifiedContent);
+
 						writer.close();
 						
 						file = new File(auxResource);
 						file.delete();
 						
 					}
-				    catch (IOException e) {e.printStackTrace();}
+				    catch (IOException e) {e.printStackTrace(); logger.info(e.toString());}
 					 
 					List <org.eclipse.lsp4j.Diagnostic> diagnostics              = diagnosticConnector.getDiagnostics(diagnosticConnector.validateModel(resourceURI));					
 					PublishDiagnosticsParams            publishDiagnosticsParams = new PublishDiagnosticsParams(resourceURI, diagnostics);
@@ -783,7 +792,8 @@ public class TextDocumentServiceImpl implements TextDocumentService {
 					logger.info("Diagnostics...");
 					logger.info(publishDiagnosticsParams);
 
-					languageServerImpl.publishDiagnogsticsToClient(publishDiagnosticsParams);
+					if(languageServerImpl.doesClientApplyEdit() == true)
+						languageServerImpl.publishDiagnogsticsToClient(publishDiagnosticsParams);
 				
 				}
 				else {
@@ -799,7 +809,7 @@ public class TextDocumentServiceImpl implements TextDocumentService {
 					//We do check if client allows applyEdit options. If true, we do send him those applyEdits
 					ClientCapabilities clientCapabilities = languageServerImpl.getClientCapabilities();
 					
-					if(clientCapabilities.getWorkspace().getApplyEdit() == true) {
+					if(languageServerImpl.doesClientApplyEdit() == true) {
 					
 						//Read content of previous version of the file
 						String         applyContent   = "";
@@ -819,8 +829,8 @@ public class TextDocumentServiceImpl implements TextDocumentService {
 							}
 							
 						} 
-						catch (FileNotFoundException e) {e.printStackTrace();} 
-						catch (IOException e) 		    {e.printStackTrace();}
+						catch (FileNotFoundException e) {e.printStackTrace(); logger.info(e.toString());} 
+						catch (IOException e) 		    {e.printStackTrace(); logger.info(e.toString());}
 						finally {
 							
 							try {
@@ -829,7 +839,7 @@ public class TextDocumentServiceImpl implements TextDocumentService {
 								file = new File(auxResource);
 								file.delete();
 								
-							} catch (IOException e) {e.printStackTrace();} 
+							} catch (IOException e) {e.printStackTrace(); logger.info(e.toString());} 
 							
 							applyContent = stringBuilder.toString();
 						}
@@ -837,7 +847,8 @@ public class TextDocumentServiceImpl implements TextDocumentService {
 						logger.info("ApplyContent to text document '" + params.getTextDocument() + "'...");
 						logger.info(applyContent);
 
-						languageServerImpl.applyEditClient(params.getTextDocument(), applyContent);
+						if(languageServerImpl.doesClientApplyEdit() == true)
+							languageServerImpl.applyEditClient(params.getTextDocument(), applyContent);
 					
 					}
 					else {
@@ -849,16 +860,16 @@ public class TextDocumentServiceImpl implements TextDocumentService {
 						
 						logger.info("Something went worong and client's apply edit feature is not enable, thus following ApplyEdit cannot be applied");
 
-						languageServerImpl.notifyMessageClient(messageParams);
+						if(languageServerImpl.doesClientApplyEdit() == true)
+							languageServerImpl.notifyMessageClient(messageParams);
 						
 					}
 				}
 				
 				logger.info("...end of document parsing");
 
-				System.out.println();
-				System.out.println("...end of document parsing");
-				System.out.println("--------------------------------");
+				System.out.println("end of document parsing");
+				System.out.println("");
 
 			}
 
@@ -871,7 +882,8 @@ public class TextDocumentServiceImpl implements TextDocumentService {
 			
 			logger.info("Client tired to change a document before completing initialization");
 			
-			languageServerImpl.notifyMessageClient(messageParams);
+			if(languageServerImpl.doesClientApplyEdit() == true)
+				languageServerImpl.notifyMessageClient(messageParams);
 			
 		}		
 	
@@ -892,8 +904,9 @@ public class TextDocumentServiceImpl implements TextDocumentService {
 		logger.info("didClose notification received from the client side...");
 		logger.info(params.toString());
 		
-		System.out.println("DidClose notification received from the client side");
+		System.out.println("didClose notification received from the client side");
 		System.out.println(params.toString());
+		System.out.println();
 		
 		LanguageServerImpl languageServerImpl = LanguageServerImpl.getInstance();
 		MessageParams      messageParams      = new MessageParams();
@@ -932,7 +945,8 @@ public class TextDocumentServiceImpl implements TextDocumentService {
 
 		}
 
-		languageServerImpl.notifyMessageClient(messageParams);
+		if(languageServerImpl.doesClientApplyEdit() == true)
+			languageServerImpl.notifyMessageClient(messageParams);
 
 	}
 
@@ -1000,122 +1014,5 @@ public class TextDocumentServiceImpl implements TextDocumentService {
 		return CompletableFuture.completedFuture(myDocumentLink);
 		
 	}
-
-	
-	/**
-	 * Check file correctness
-	 * @param params
-	 */
-//	@Override
-	public CompletableFuture <String> checkMyFile(DidOpenTextDocumentParams params) {
-		
-		try {
-						
-			String serverCopy = new String(this.textDocumentItem.getUri());
-			
-			serverCopy 	      = serverCopy.substring(0, (serverCopy.length() - 4));
-			serverCopy 		  = serverCopy.concat("Server.txt");
-			
-			String oldPasword  = new String(Files.readAllBytes(Paths.get(serverCopy)));
-			String newPassword = new String(Files.readAllBytes(Paths.get(this.textDocumentItem.getUri())));
-			String  result     = validatePassword(newPassword);
-				
-			
-			//Update local file at serverss side
-			if(result.equals("Su contraseña ha sido correctamente almacenada")) {
-				
-				BufferedWriter bufferedWriter = null;
-				
-				try {
-					
-					FileWriter file = new FileWriter(serverCopy, false);
-					bufferedWriter  = new BufferedWriter(file);
-					bufferedWriter.write(newPassword);
-					
-				}
-        		catch (IOException e) {
-        			e.printStackTrace();
-        		} finally {
-        			
-        			if(bufferedWriter != null) {   
-        				
-        				bufferedWriter.close();
-        				System.out.println("La contraseña ha sido actualizada localmente: " + newPassword);
-        				System.out.println();
-        				
-        			}
-        			
-        		}
-				
-			}
-			
-			//Update password at clients side
-			else {
-				
-				
-				BufferedWriter bufferedWriter = null;
-				
-				try {
-					
-					FileWriter file = new FileWriter(this.textDocumentItem.getUri(), false);
-					bufferedWriter  = new BufferedWriter(file);
-					bufferedWriter.write(oldPasword);
-					
-				}
-        		catch (IOException e) {
-        			e.printStackTrace();
-        		} finally {
-        			
-        			if(bufferedWriter != null) {   
-        				
-        				bufferedWriter.close();
-        				System.out.println("La contraseña ha sido actualizada remotamente: " + oldPasword);
-        				System.out.println();
-        				
-        			}
-        			
-        		}
-
-			}
-
-			return CompletableFuture.completedFuture(result);
-			
-		}
-		catch (Exception e) {
-			System.out.println(e);
-		}
-		
-		
-		return null;
-	
-	}
-
-	
-	/**
-	 * ^                 # start-of-string
-	 * (?=.*[0-9])       # a digit must occur at least once
-	 * (?=.*[a-z])       # a lower case letter must occur at least once
-	 * (?=.*[A-Z])       # an upper case letter must occur at least once
-	 * (?=\S+$)          # no whitespace allowed in the entire string
-	 * .{8,}             # anything, at least eight places though
-	 * $                 # end-of-string
-	 */
-	public String validatePassword(String password) {
-		
-		String result = "Su contraseña ha sido correctamente almacenada";
-		
-		if(!password.trim().matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}$"))
-				result = "Error, Invalid password: " + password.trim();
-		
-		return result;
-	
-	}
-
-
-//	@Override
-//	public CompletableFuture<Either<List<CompletionItem>, CompletionList>> completion(CompletionParams position) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
 
 }

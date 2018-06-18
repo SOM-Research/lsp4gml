@@ -10,9 +10,40 @@ public class Node {
 	private int     	id;
 	private String  	type;
 	private List <Pair> abstractProperties;
+	private Concrete    concrete;
 	private Diagram     diagram;
+	private Boolean     movable;
+	private Boolean     editable;
 	
 	
+	public Boolean getMovable() {
+		
+		return movable;
+		
+	}
+
+
+	public void setMovable(Boolean movable) {
+		
+		this.movable = movable;
+		
+	}
+
+
+	public Boolean getEditable() {
+		
+		return editable;
+		
+	}
+
+
+	public void setEditable(Boolean editable) {
+		
+		this.editable = editable;
+		
+	}
+
+
 	public void setId(int _id) {
 		
 		this.id = _id;
@@ -69,6 +100,20 @@ public class Node {
 	}
 	
 	
+	public void setConcrete(Concrete _concrete) {
+		
+		this.concrete = _concrete;
+		
+	}
+	
+	
+	public Concrete getConcrete() {
+		
+		return this.concrete;
+		
+	}
+	
+	
 	public String toString () {
 		
 		String toString = "";
@@ -77,7 +122,10 @@ public class Node {
 		toString = toString	+ " id: "        + this.id   						  + "\n";
 		toString = toString + " type: "      + this.type 						  + "\n";
 		toString = toString + " abstract: (" + this.abstractProperties.toString() + ")\n";
+		toString = toString + " concrete: (" + this.concrete.toString()           + ")\n";
 		toString = toString + " diagram:  (" + this.diagram.toString()            + ")\n";
+		toString = toString + " movable: "   + this.movable 					  + "\n";
+		toString = toString + " editable: "  + this.editable 					  + "\n";
 		
 		return toString;
 		

@@ -1,24 +1,15 @@
 package es.unex.quercusseg.graphicalserver.util;
 
-import org.apache.log4j.Logger;
-//import org.apache.log4j.PropertyConfigurator;
-
-import es.unex.quercusseg.graphicalserver.LanguageServerImpl;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 
 public class Logging {
   
 	
-	private static Logging instance = null;
-    private final  Logger  logger   = Logger.getLogger(Logging.class);
-    
-    
-    public Logging () {
-    	
-//    	PropertyConfigurator.configure("log4j.properties");
-    	
-    }
-    
+	private static final Logger logger = LogManager.getLogger(Logging.class);
+	private static       Logging instance = null;
+      
     
 	public static Logging getInstance() {
 		
@@ -32,17 +23,15 @@ public class Logging {
 	
     public Logger getLogger() {
     	
-    	return this.logger;
+    	return logger;
     	
     }
     
     
     public static void main(String[] args) {
-    	
-    	Logging logging = new Logging();
-    	Logger logger = logging.getLogger();
-    	
-    	logger.info("this is a sample log message."); 	
+    	 
+        logger.info("Entering application.");
+        logger.info("Exiting application.");
         
     }
     

@@ -5,6 +5,12 @@ import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import java.io.*;
+import java.util.regex.*;
+import java.util.Scanner;
+import java.security.MessageDigest;
+import javax.xml.bind.DatatypeConverter;
+
 import org.eclipse.lsp4j.jsonrpc.Launcher;
 import org.eclipse.lsp4j.launch.LSPLauncher;
 import org.eclipse.lsp4j.services.LanguageClient;
@@ -36,9 +42,38 @@ public class LanguageServerLauncher {
 					Socket socket = serverSocket.accept();
 
 					System.out.print("Incoming client....");
+
+					InputStream in = socket.getInputStream();
+
+OutputStream out = socket.getOutputStream();
+
+//translate bytes of request to string
+// String data = new Scanner(in,"UTF-8").useDelimiter("\\r\\n\\r\\n").next();
+
+// Matcher get = Pattern.compile("^GET").matcher(data);
+
+// 					//WebSocket handshaking
+// 					if (get.find()) {
+//     Matcher match = Pattern.compile("Sec-WebSocket-Key: (.*)").matcher(data);
+//     match.find();
+//     byte[] response = ("HTTP/1.1 101 Switching Protocols\r\n"
+//             + "Connection: Upgrade\r\n"
+//             + "Upgrade: websocket\r\n"
+//             + "Sec-WebSocket-Accept: "
+//             + DatatypeConverter
+//             .printBase64Binary(
+//                     MessageDigest
+//                     .getInstance("SHA-1")
+//                     .digest((match.group(1) + "258EAFA5-E914-47DA-95CA-C5AB0DC85B11")
+//                             .getBytes("UTF-8")))
+//             + "\r\n\r\n")
+//             .getBytes("UTF-8");
+
+//     out.write(response, 0, response.length);
+// }
 					
 					//Create a JSON-RPC connection for the accepted socket
-					Launcher <LanguageClient> launcher = LSPLauncher.createServerLauncher(languageServer, socket.getInputStream(), socket.getOutputStream());
+					Launcher <LanguageClient> launcher = LSPLauncher.createServerLauncher(languageServer, in, out);
 					
 					//Connect a remote client to our server
 					languageServer.addLanguageClient(launcher.getRemoteProxy());

@@ -1,0 +1,14 @@
+<Configuration status="INFO" name="graphical-server" packages="">
+  <Appenders>
+    <File name="MyFile" fileName="logs/graphical-server.log">
+      <PatternLayout>
+        <Pattern>%d %p %C{1.} [%t] %m%n</Pattern>
+      </PatternLayout>
+    </File>
+  </Appenders>
+  <Loggers>
+    <Root level="info">
+      <AppenderRef ref="MyFile"/>
+    </Root>
+  </Loggers>
+</Configuration>

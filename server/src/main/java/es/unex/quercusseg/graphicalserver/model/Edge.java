@@ -2,6 +2,7 @@ package es.unex.quercusseg.graphicalserver.model;
 
 import java.util.List;
 
+
 public class Edge {
 
 	
@@ -10,6 +11,36 @@ public class Edge {
 	private String 	    origin;
 	private String 	    target;
 	private List <Pair> abstractProperties;
+	private Boolean     movable;
+	private Boolean     editable;
+	
+	
+	public Boolean getMovable() {
+		
+		return movable;
+		
+	}
+
+
+	public void setMovable(Boolean movable) {
+		
+		this.movable = movable;
+		
+	}
+
+
+	public Boolean getEditable() {
+		
+		return editable;
+		
+	}
+
+
+	public void setEditable(Boolean editable) {
+		
+		this.editable = editable;
+		
+	}
 
 	
 	public void setId(int _id) {
@@ -92,6 +123,8 @@ public class Edge {
 		toString = toString + " origin: "    + this.origin 						  + "\n";
 		toString = toString + " target: "    + this.target 						  + "\n";
 		toString = toString + " abstract: (" + this.abstractProperties.toString() + ")\n";
+		toString = toString + " movable: "   + this.movable 					  + "\n";
+		toString = toString + " editable: "  + this.editable 					  + "\n";
 	
 		return toString;
 		

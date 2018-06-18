@@ -8,6 +8,14 @@ public class Pair {
 	private String value;
 	
 		
+	public Pair(String _key, String _value) {
+		
+		this.name  = _key;
+		this.value = _value;
+		
+	}
+
+
 	public void setName(String _name) {
 		
 		this.name = _name;

@@ -1,0 +1,261 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] Building graphical-server 1.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ graphical-server ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory C:\Users\jcanovasi\git\graphical-server\src\main\resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.5.1:compile (default-compile) @ graphical-server ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 12 source files to C:\Users\jcanovasi\git\graphical-server\target\classes
+[INFO] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/connector/Factory.java: Some input files use unchecked or unsafe operations.
+[INFO] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/connector/Factory.java: Recompile with -Xlint:unchecked for details.
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[11,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[12,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[13,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[14,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[15,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[16,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[17,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[18,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[19,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[20,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[21,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[22,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[23,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[24,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[25,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[26,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[27,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[28,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[29,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[30,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[31,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[32,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[33,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[34,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[35,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[36,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[37,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[38,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[39,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[40,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[41,34] package org.eclipse.lsp4j.services does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[42,34] package org.eclipse.lsp4j.services does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[43,34] package org.eclipse.lsp4j.services does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[44,34] package org.eclipse.lsp4j.services does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[50,44] cannot find symbol
+  symbol: class LanguageServer
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[53,29] cannot find symbol
+  symbol:   class LanguageClient
+  location: class es.unex.quercusseg.graphicalserver.LanguageServerImpl
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[56,29] cannot find symbol
+  symbol:   class ClientCapabilities
+  location: class es.unex.quercusseg.graphicalserver.LanguageServerImpl
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[62,17] cannot find symbol
+  symbol:   class ServerCapabilities
+  location: class es.unex.quercusseg.graphicalserver.LanguageServerImpl
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[18,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[19,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[20,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[21,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[22,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[23,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[24,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[25,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[26,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[27,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[28,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[29,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[30,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[31,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[32,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[33,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[34,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[35,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[36,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[37,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[38,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[39,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[40,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[41,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[42,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[43,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[44,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[45,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[46,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[47,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[48,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[49,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[50,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[51,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[52,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[53,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[54,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[55,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[56,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[57,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[58,42] package org.eclipse.lsp4j.jsonrpc.messages does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[59,34] package org.eclipse.lsp4j.services does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[65,49] cannot find symbol
+  symbol: class TextDocumentService
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/WorkspaceServiceImpl.java:[13,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/WorkspaceServiceImpl.java:[14,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/WorkspaceServiceImpl.java:[15,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/WorkspaceServiceImpl.java:[16,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/WorkspaceServiceImpl.java:[17,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/WorkspaceServiceImpl.java:[18,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/WorkspaceServiceImpl.java:[19,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/WorkspaceServiceImpl.java:[20,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/WorkspaceServiceImpl.java:[21,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/WorkspaceServiceImpl.java:[22,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/WorkspaceServiceImpl.java:[23,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/WorkspaceServiceImpl.java:[24,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/WorkspaceServiceImpl.java:[25,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/WorkspaceServiceImpl.java:[26,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/WorkspaceServiceImpl.java:[27,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/WorkspaceServiceImpl.java:[28,34] package org.eclipse.lsp4j.services does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/WorkspaceServiceImpl.java:[33,46] cannot find symbol
+  symbol: class WorkspaceService
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[105,64] cannot find symbol
+  symbol:   class InitializeParams
+  location: class es.unex.quercusseg.graphicalserver.LanguageServerImpl
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[105,35] cannot find symbol
+  symbol:   class InitializeResult
+  location: class es.unex.quercusseg.graphicalserver.LanguageServerImpl
+[INFO] 100 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 3.208 s
+[INFO] Finished at: 2018-05-10T09:36:37+02:00
+[INFO] Final Memory: 14M/211M
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.5.1:compile (default-compile) on project graphical-server: Compilation failure: Compilation failure: 
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[11,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[12,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[13,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[14,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[15,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[16,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[17,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[18,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[19,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[20,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[21,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[22,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[23,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[24,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[25,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[26,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[27,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[28,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[29,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[30,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[31,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[32,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[33,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[34,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[35,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[36,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[37,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[38,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[39,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[40,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[41,34] package org.eclipse.lsp4j.services does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[42,34] package org.eclipse.lsp4j.services does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[43,34] package org.eclipse.lsp4j.services does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[44,34] package org.eclipse.lsp4j.services does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[50,44] cannot find symbol
+[ERROR]   symbol: class LanguageServer
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[53,29] cannot find symbol
+[ERROR]   symbol:   class LanguageClient
+[ERROR]   location: class es.unex.quercusseg.graphicalserver.LanguageServerImpl
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[56,29] cannot find symbol
+[ERROR]   symbol:   class ClientCapabilities
+[ERROR]   location: class es.unex.quercusseg.graphicalserver.LanguageServerImpl
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[62,17] cannot find symbol
+[ERROR]   symbol:   class ServerCapabilities
+[ERROR]   location: class es.unex.quercusseg.graphicalserver.LanguageServerImpl
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[18,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[19,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[20,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[21,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[22,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[23,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[24,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[25,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[26,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[27,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[28,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[29,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[30,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[31,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[32,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[33,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[34,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[35,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[36,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[37,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[38,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[39,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[40,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[41,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[42,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[43,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[44,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[45,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[46,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[47,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[48,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[49,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[50,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[51,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[52,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[53,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[54,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[55,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[56,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[57,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[58,42] package org.eclipse.lsp4j.jsonrpc.messages does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[59,34] package org.eclipse.lsp4j.services does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/TextDocumentServiceImpl.java:[65,49] cannot find symbol
+[ERROR]   symbol: class TextDocumentService
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/WorkspaceServiceImpl.java:[13,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/WorkspaceServiceImpl.java:[14,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/WorkspaceServiceImpl.java:[15,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/WorkspaceServiceImpl.java:[16,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/WorkspaceServiceImpl.java:[17,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/WorkspaceServiceImpl.java:[18,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/WorkspaceServiceImpl.java:[19,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/WorkspaceServiceImpl.java:[20,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/WorkspaceServiceImpl.java:[21,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/WorkspaceServiceImpl.java:[22,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/WorkspaceServiceImpl.java:[23,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/WorkspaceServiceImpl.java:[24,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/WorkspaceServiceImpl.java:[25,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/WorkspaceServiceImpl.java:[26,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/WorkspaceServiceImpl.java:[27,25] package org.eclipse.lsp4j does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/WorkspaceServiceImpl.java:[28,34] package org.eclipse.lsp4j.services does not exist
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/WorkspaceServiceImpl.java:[33,46] cannot find symbol
+[ERROR]   symbol: class WorkspaceService
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[105,64] cannot find symbol
+[ERROR]   symbol:   class InitializeParams
+[ERROR]   location: class es.unex.quercusseg.graphicalserver.LanguageServerImpl
+[ERROR] /C:/Users/jcanovasi/git/graphical-server/src/main/java/es/unex/quercusseg/graphicalserver/LanguageServerImpl.java:[105,35] cannot find symbol
+[ERROR]   symbol:   class InitializeResult
+[ERROR]   location: class es.unex.quercusseg.graphicalserver.LanguageServerImpl
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

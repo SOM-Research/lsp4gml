@@ -7,7 +7,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutionException;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.eclipse.lsp4j.ApplyWorkspaceEditParams;
 import org.eclipse.lsp4j.ClientCapabilities;
 import org.eclipse.lsp4j.CodeLensOptions;
@@ -46,14 +46,13 @@ import org.eclipse.lsp4j.services.WorkspaceService;
 import es.unex.quercusseg.graphicalserver.util.Logging;
 
 
-
 public class LanguageServerImpl implements LanguageServer {
 	
 	//Language client we are communicating with
-	private final List <LanguageClient> clients = new CopyOnWriteArrayList <> ();
+	private LanguageClient client = null;
 
 	//Every field on the clients list has its corresponding capabilities ont this array
-	private final List <ClientCapabilities> clientCapabilities = new CopyOnWriteArrayList <> ();
+	private ClientCapabilities clientCapabilities = null;
 	
 	//Indicates if client we are talking to has established connection
 	private boolean initialized = false;
@@ -114,7 +113,7 @@ public class LanguageServerImpl implements LanguageServer {
 		 * Show client capabilities and init params
 		 */
 			
-			this.clientCapabilities.add(params.getCapabilities());
+			this.clientCapabilities = params.getCapabilities();
 			
 			logger.info("Client capabilities...");
 			logger.info(params.toString());
@@ -135,7 +134,7 @@ public class LanguageServerImpl implements LanguageServer {
 			this.serverCapabilities.setDocumentLinkProvider(new DocumentLinkOptions(false));
 			this.serverCapabilities.setDocumentOnTypeFormattingProvider(new DocumentOnTypeFormattingOptions(null));
 			this.serverCapabilities.setDocumentRangeFormattingProvider(false);
-			this.serverCapabilities.setDocumentSymbolProvider(true);
+			this.serverCapabilities.setDocumentSymbolProvider(false);
 		
 			List <String> commands = new ArrayList <String> ();
 			commands.add("validate");
@@ -160,8 +159,8 @@ public class LanguageServerImpl implements LanguageServer {
 			
 			WorkspaceServerCapabilities workspaceServerCapabilities = new WorkspaceServerCapabilities();
 			WorkspaceFoldersOptions     workspaceFoldersOptions     = new WorkspaceFoldersOptions();
-			workspaceFoldersOptions.setChangeNotifications(true);
-			workspaceFoldersOptions.setSupported(true);
+			workspaceFoldersOptions.setChangeNotifications(false);
+			workspaceFoldersOptions.setSupported(false);
 			workspaceServerCapabilities.setWorkspaceFolders(workspaceFoldersOptions);
 			this.serverCapabilities.setWorkspace(workspaceServerCapabilities);
 	
@@ -181,7 +180,7 @@ public class LanguageServerImpl implements LanguageServer {
 			
 			MessageParams messageParams = new MessageParams(org.eclipse.lsp4j.MessageType.Info, "Connection has been established");
 			logger.info("Connection with client (id:" + params.getProcessId() + ") has been established");
-			clients.get(0).showMessage(messageParams);
+			client.showMessage(messageParams);
 		
 		/**
 		 * Return initialize results to the client
@@ -214,15 +213,19 @@ public class LanguageServerImpl implements LanguageServer {
 	@Override
 	public void exit() {
 		
-		System.out.println("Client " + this.clients.get(0) + " has been disconnected");
-		logger.info("Client " + this.clients.get(0) + " has been disconnected");
+		System.out.println("Client " + this.client + " has been disconnected");
+		logger.info("Client " + this.client + " has been disconnected");
 		
-		MessageParams messageParams = new MessageParams();
-		messageParams.setType(org.eclipse.lsp4j.MessageType.Info);
-		messageParams.setMessage("You have succesfully exited the server");
-		clients.get(0).showMessage(messageParams);
+		if(doesClientApplyEdit() == true) {
 
-		this.clients.clear();
+			MessageParams messageParams = new MessageParams();
+			messageParams.setType(org.eclipse.lsp4j.MessageType.Info);
+			messageParams.setMessage("You have succesfully exited the server");
+			client.showMessage(messageParams);
+
+		}
+		
+		this.client = null;
 				
 	}
 
@@ -256,7 +259,8 @@ public class LanguageServerImpl implements LanguageServer {
 	 */
 	public void addLanguageClient(LanguageClient _languageClient) {
 		
-		this.clients.add(_languageClient);
+		if(this.client == null)
+			this.client = _languageClient;
 		
 	}
 
@@ -264,9 +268,9 @@ public class LanguageServerImpl implements LanguageServer {
 	/**
 	 * Get them language clients
 	 */
-	public List <LanguageClient> getLanguageClients() {
+	public LanguageClient getLanguageClients() {
 		
-		return this.clients;
+		return this.client;
 	
 	}
 
@@ -279,7 +283,7 @@ public class LanguageServerImpl implements LanguageServer {
 		
 		MessageParams messageParams = _messageParams;
 		messageParams.setType(org.eclipse.lsp4j.MessageType.Info);
-		clients.get(0).showMessage(messageParams);
+		client.showMessage(messageParams);
 						
 	}
 	
@@ -317,7 +321,7 @@ public class LanguageServerImpl implements LanguageServer {
 		workspaceEdit.setDocumentChanges(documentChanges);
 		
 		applyWorkspaceEditParams.setEdit(workspaceEdit);
-		clients.get(0).applyEdit(applyWorkspaceEditParams);
+		client.applyEdit(applyWorkspaceEditParams);
 			
 	}
 
@@ -352,8 +356,8 @@ public class LanguageServerImpl implements LanguageServer {
 		registrationParams.setRegistrations(registrations);
 		
 		try {
-			System.out.println(clients.get(0).registerCapability(registrationParams).get().toString());
-		} catch (Exception e) {}
+			System.out.println(client.registerCapability(registrationParams).get().toString());
+		} catch (Exception e) {logger.info(e.toString());}
 		
 	}
 
@@ -376,8 +380,8 @@ public class LanguageServerImpl implements LanguageServer {
 		unregistrationParams.setUnregisterations(unregistrations);
 		
 		try {
-			System.out.println(clients.get(0).unregisterCapability(unregistrationParams).get().toString());
-		} catch (Exception e) {}
+			System.out.println(client.unregisterCapability(unregistrationParams).get().toString());
+		} catch (Exception e) {logger.info(e.toString());}
 		
 	}
 
@@ -388,7 +392,7 @@ public class LanguageServerImpl implements LanguageServer {
 	 */
 	public void telemetryEventClient() {
 		
-		clients.get(0).telemetryEvent(new String("Client editor has been properly synchronized so far"));
+		client.telemetryEvent(new String("Client editor has been properly synchronized so far"));
 		
 	}
 		
@@ -414,8 +418,8 @@ public class LanguageServerImpl implements LanguageServer {
 		showMessageRequestParams.setMessage("Plase check this, an error has been detected");
 		
 		try {
-			System.out.println(clients.get(0).showMessageRequest(showMessageRequestParams).get().toString());
-		} catch (Exception e) {}
+			System.out.println(client.showMessageRequest(showMessageRequestParams).get().toString());
+		} catch (Exception e) {logger.info(e.toString());}
 
 	}
 	
@@ -430,7 +434,7 @@ public class LanguageServerImpl implements LanguageServer {
 		message.setType(org.eclipse.lsp4j.MessageType.Log);
 		message.setMessage("All changes have been succesfully saved on the server side");
 		
-		clients.get(0).logMessage(message);
+		client.logMessage(message);
 		
 	}
 	
@@ -441,7 +445,7 @@ public class LanguageServerImpl implements LanguageServer {
 	 */
 	public void publishDiagnogsticsToClient(PublishDiagnosticsParams params) {
 		
-		this.clients.get(0).publishDiagnostics(params);
+		this.client.publishDiagnostics(params);
 		
 	}
 	
@@ -459,7 +463,7 @@ public class LanguageServerImpl implements LanguageServer {
 	public void workspaceFoldersClient() {
 		
 		//try {
-			//System.out.println(clients.get(0).workspaceFolders().get().toString());
+			//System.out.println(client.workspaceFolders().get().toString());
 		//} catch (Exception e) {}
 
 	}
@@ -474,8 +478,17 @@ public class LanguageServerImpl implements LanguageServer {
 	
 	public ClientCapabilities getClientCapabilities () {
 		
-		return this.clientCapabilities.get(0);
+		return this.clientCapabilities;
 		
+	}
+
+	public Boolean doesClientApplyEdit() {
+
+		if(this.clientCapabilities.getWorkspace().getApplyEdit() == true)
+			return true;
+		else
+			return false;
+
 	}
 	
 }

@@ -4,7 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -21,7 +21,80 @@ public class ValidateModel {
 	//Logging instance
 	private static Logger logger = Logging.getInstance().getLogger();
 
-	public Diagnostic validateMyModel(List <NamedElement> modelObjects, List <Node> nodes, List <Edge> edges, String rootElement, String implPackage) 
+	
+	public String getNodeOriginName(Node nodeOrigin) {
+		
+		String  nodeOriginName = "";
+		
+		for(int k = 0; k < nodeOrigin.getAbstractProperties().size(); k++) {
+			
+			Pair pair = nodeOrigin.getAbstractProperties().get(k);
+			
+			if(pair.getName().equals("name"))
+				nodeOriginName = pair.getValue();
+			
+		}
+
+		return nodeOriginName;
+		
+	}
+	
+	
+	public String getNodeTargetName(Node nodeTarget) {
+		
+		String  nodeTargetName = "";
+		
+		for(int k = 0; k < nodeTarget.getAbstractProperties().size(); k++) {
+			
+			Pair pair = nodeTarget.getAbstractProperties().get(k);
+			
+			if(pair.getName().equals("name"))
+				nodeTargetName = pair.getValue();
+			
+		}
+
+		return nodeTargetName;
+		
+	}
+
+	
+	public String getRelationName(Edge thisEdge) {
+		
+		String relationName = "";
+		
+		for(int k = 0; k < thisEdge.getAbstractProperties().size(); k++) {
+			
+			Pair pair = thisEdge.getAbstractProperties().get(k);
+			
+			if(pair.getName().equals("name"))
+				relationName = pair.getValue();
+						
+		}
+		
+		return relationName;
+
+	}
+
+	
+	public String getMultiplicity(Edge thisEdge) {
+	
+		String multiplicity = "";
+		
+		for(int k = 0; k < thisEdge.getAbstractProperties().size(); k++) {
+			
+			Pair pair = thisEdge.getAbstractProperties().get(k);
+					
+			if(pair.getName().equals("multiplicity"))
+				multiplicity = pair.getValue();
+			
+		}
+
+		return multiplicity;
+		
+	}
+	
+	
+	public Diagnostic validate(List <NamedElement> modelObjects, List <Node> nodes, List <Edge> edges, String rootElement, String implPackage) 
 			throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 		
 		logger.info("Validating model...");
@@ -44,6 +117,7 @@ public class ValidateModel {
 			String  relationName   = "";
 			String  multiplicity   = "";
 			
+			
 			//Find them nodes belonging to origin and target
 			for (int j = 0; j < nodes.size() && !gotEmNodes; j++) {
 				
@@ -59,37 +133,16 @@ public class ValidateModel {
 			}
 			
 			//Find identifier of nodeOrigin
-			for(int k = 0; k < nodeOrigin.getAbstractProperties().size(); k++) {
-				
-				Pair pair = nodeOrigin.getAbstractProperties().get(k);
-				
-				if(pair.getName().equals("name"))
-					nodeOriginName = pair.getValue();
-				
-			}
+			nodeOriginName = getNodeOriginName(nodeOrigin);
 			
 			//Find identifier of nodeTarget
-			for(int k = 0; k < nodeTarget.getAbstractProperties().size(); k++) {
-				
-				Pair pair = nodeTarget.getAbstractProperties().get(k);
-				
-				if(pair.getName().equals("name"))
-					nodeTargetName = pair.getValue();
-				
-			}
+			nodeTargetName = getNodeTargetName(nodeTarget);
+			
 			
 			//Find relation name and multiplicity
-			for(int k = 0; k < thisEdge.getAbstractProperties().size(); k++) {
-				
-				Pair pair = thisEdge.getAbstractProperties().get(k);
-				
-				if(pair.getName().equals("name"))
-					relationName = pair.getValue();
-				
-				if(pair.getName().equals("multiplicity"))
-					multiplicity = pair.getValue();
-				
-			}
+			relationName = getRelationName(thisEdge);
+			multiplicity = getMultiplicity(thisEdge);
+						
 			
 			//Find them namedElements
 			NamedElement namedElement1 = null;
@@ -105,6 +158,7 @@ public class ValidateModel {
 
 				if(namedElement1 != null && namedElement2 != null)
 					gotEmElements = true;
+				
 			}
 			
 						
@@ -178,11 +232,11 @@ public class ValidateModel {
 
 					
 				} 
-				catch (NoSuchMethodException e)     { System.out.println(e); }
-				catch (SecurityException e)         { System.out.println(e); } 
-				catch (IllegalAccessException e)    { System.out.println(e); } 
-				catch (IllegalArgumentException e)  { System.out.println(e); } 
-				catch (InvocationTargetException e) { System.out.println(e); }
+				catch (NoSuchMethodException e)     { System.out.println(e); logger.info(e.toString());}
+				catch (SecurityException e)         { System.out.println(e); logger.info(e.toString());} 
+				catch (IllegalAccessException e)    { System.out.println(e); logger.info(e.toString());} 
+				catch (IllegalArgumentException e)  { System.out.println(e); logger.info(e.toString());} 
+				catch (InvocationTargetException e) { System.out.println(e); logger.info(e.toString());}
 
 			}
 			
