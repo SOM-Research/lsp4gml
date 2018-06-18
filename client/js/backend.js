@@ -1,35 +1,206 @@
 
 // Our IRF definition
-var irf = {
-    "version" : "v1",
-    "language" : "UMLClass",
-    "elements" : [
-        { "node" : {
-            "id" : "b1",
-            "type" : "box",
-            "abstract" : { "name" : "A" },
-            "concrete" : { "width" : 100, "height" : 50, },
-            "diagram"  : {  "x" : 50, "y" : 40, "z" : 0 },
-            "editorOptions" : { "movable" : true, "editable" : true } 
-            }
+var irf =
+ {
+    "rootElement": "Family",
+    "namedElementPackage": "family.model.family.impl.NamedElementImpl",
+    "implPackage": "family.model.family.impl.",
+    "nodes": [
+        {
+            "id": "1",
+            "type": "Family",
+            "abstract" : {
+                "name" : "F1",
+                "lastName" : "Ramirez"
+            },
+            "concrete" : { "width" : 100, "height" : 50 },
+            "diagram": {
+                "x" : 50, 
+                "y" : 40, 
+                "z" : 0
+            },
+            "editorOptions": {
+                "movable" : "True",
+                "editable" : "True"
+            }           
         },
-        { "node" : {
-            "id" : "b2",
-            "type" : "box",
-            "abstract" : { "name" : "B" },
-            "concrete" : { "width" : 100, "height" : 50, },
-            "diagram"  : {  "x" : 200, "y" : 180, "z" : 0 },
-            "editorOptions" : { "movable" : true, "editable" : true } 
-            }
+        {
+            "id": "2",
+            "type": "Member",
+            "abstract": {
+                "name" : "M1",
+                "firstName" : "Julio",
+                "age" : 45,
+                "gender" : "male"
+            },
+            "concrete" : { "width" : 100, "height" : 50 },
+            "diagram": {
+                "x" : 160, 
+                "y" : 40, 
+                "z" : 0
+            },
+            "editorOptions": {
+                "movable" : "True",
+                "editable" : "True"
+            }               
         },
-        { "edge" : {
-            "id" : "b1-b2",
-            "type" : "default",
-            "origin" : "b1",
-            "target" : "b2",
-            "editorOptions" : { "movable" : false,"editable" : false
-            } 
-        }}
+        {
+            "id": "3",
+            "type": "Member",
+            "abstract": {
+                "name" : "M2",
+                "firstName" : "Margarita",
+                "age" : 40,
+                "gender" : "female"
+            },
+            "concrete" : { "width" : 100, "height" : 50 },
+            "diagram": {
+                "x" : 280, 
+                "y" : 40, 
+                "z" : 0
+            },
+            "editorOptions": {
+                "movable" : "True",
+                "editable" : "True"
+            }                   
+        },
+        {
+            "id": "4",
+            "type": "Member",
+            "abstract": {
+                "name" : "M3",
+                "firstName" : "Hugo",
+                "age" : 15,
+                "gender" : "male"
+            },
+            "concrete" : { "width" : 100, "height" : 50 },
+            "diagram": {
+                "x" : 50, 
+                "y" : 110, 
+                "z" : 0
+            },
+            "editorOptions": {
+                "movable" : "True",
+                "editable" : "True"
+            }                       
+        },
+        {
+            "id": "5",
+            "type": "Member",
+            "abstract": {
+                "name" : "M4",
+                "firstName" : "Adrian",
+                "age" : 8,
+                "gender" : "male"
+            },
+            "concrete" : { "width" : 100, "height" : 50 },
+            "diagram": {
+                "x" : 50, 
+                "y" : 220, 
+                "z" : 0
+            },
+            "editorOptions": {
+                "movable" : "True",
+                "editable" : "True"
+            }                       
+        },
+        {
+            "id": "6",
+            "type": "Member",
+            "abstract": {
+                "name" : "M5",
+                "firstName" : "Sofia",
+                "age" : 10,
+                "gender" : "female"
+            },  
+            "concrete" : { "width" : 100, "height" : 50 },        
+            "diagram": {
+                "x" : 210, 
+                "y" : 220, 
+                "z" : 0
+            },
+            "editorOptions": {
+                "movable" : "True",
+                "editable" : "True"
+            }               
+        }       
+    ],
+    "edges": [
+     {
+            "id": "1",
+            "type": "default",
+            "origin": "1",
+            "target": "2",
+            "abstract": {
+                "name" : "father",
+                "multiplicity" : "1",
+                "containment" : "yes"
+            },
+            "editorOptions": {
+                "movable" : "True",
+                "editable" : "True"
+            }                                           
+        },
+        {
+            "id": "2",
+            "type": "default",
+            "origin": "1",
+            "target": "3",
+            "abstract": {
+                "name" : "mother",
+                "multiplicity" : "1",
+                "containment" : "yes"
+            },
+            "editorOptions": {
+                "movable" : "True",
+                "editable" : "True"
+            }                                           
+        },
+        {
+            "id": "3",
+            "type": "default",
+            "origin": "1",
+            "target": "4",
+            "abstract": {
+                "name" : "sons",
+                "multiplicity" : "n",
+                "containment" : "no"
+            },
+            "editorOptions": {
+                "movable" : "True",
+                "editable" : "True"
+            }                                           
+        },
+        {
+            "id": "4",
+            "type": "default",
+            "origin": "1",
+            "target": "5",
+            "abstract": {
+                "name" : "sons",
+                "multiplicity" : "n",
+                "containment" : "no"
+            },
+            "editorOptions": {
+                "movable" : "True",
+                "editable" : "True"
+            }                               
+        },
+        {
+            "id": "5",
+            "type": "default",
+            "origin": "1",
+            "target": "6",
+            "abstract": {
+                "name" : "daughters",
+                "multiplicity" : "n",
+                "containment" : "no"
+            },
+            "editorOptions": {
+                "movable" : "True",
+                "editable" : "True"
+            }                               
+        }       
     ]
 }
 
@@ -41,11 +212,20 @@ var oldirf = JSON.stringify(irf, undefined, 2);
 // For now the map includes a single entry for the SVG rectangle which includes a SVG text inside. 
 // Note that the text elemetn has an id with value "name" which will be a placeholder for the text to add
 templates =  {
-    "box" : 
+    "Family" : 
         '<g class="rotatable"><g class="scalable">' +
         '<rect y="0" x="0" height="10" width="20" style="color:#000000;opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.25;stroke-opacity:1;"/>' +
         '</g>'+
-        '<text id="name" y="30" x="45" style="font-family:sans-serif;fill:#000000;fill-opacity:1;"></text>' + 
+        '<text id="name" y="20" x="5" style="font-family:sans-serif;fill:#000000;fill-opacity:1;"></text>' + 
+        '<text id="lastName" y="40" x="25" style="font-family:sans-serif;fill:#000000;fill-opacity:1;"></text>' + 
+        '</g>'
+        ,
+    "Member" : 
+        '<g class="rotatable"><g class="scalable">' +
+        '<rect y="0" x="0" height="10" width="20" style="color:#000000;opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.25;stroke-opacity:1;"/>' +
+        '</g>'+
+        '<text id="name" y="20" x="5" style="font-family:sans-serif;fill:#000000;fill-opacity:1;"></text>' + 
+        '<text id="firstName" y="40" x="25" style="font-family:sans-serif;fill:#000000;fill-opacity:1;"></text>' + 
         '</g>'
 }
 
@@ -64,6 +244,7 @@ var lastCreatedNodeId = undefined
  * @param nodeInfo The info of the node
  */
 function createNode(nodeType, nodeInfo) {
+
     // We first recover the SVG template given the nodeType
     template = templates[nodeType]
 
@@ -157,7 +338,7 @@ function generateBox() {
         { "node" : {
             "id" : "box" + randomId,
             "type" : "box",
-            "abstract" : { "name" : "B" + randomId },
+            "abstract" : { "name" : "B" + randomId, "firstName" : "Son" + randomId },
             "concrete" : { "width" : 100, "height" : 50, },
             "diagram"  : {  "x" : randomX, "y" : randomY, "z" : 0 },
             "editorOptions" : { "movable" : true, "editable" : true } 
@@ -170,9 +351,12 @@ function generateBox() {
  * Adds a node to the canvas 
  */
 function addNode() {
-    veryLastNodeId = lastCreatedNodeId;
+    // veryLastNodeId = lastCreatedNodeId;
+    veryLastNodeId = "1"; //Family node
     nodeGenerated = generateBox();
-    createNode(nodeGenerated.node.type, nodeGenerated.node);
+    // createNode(nodeGenerated.node.type, nodeGenerated.node);
+
+    createNode("Member", nodeGenerated.node);
 
     if(veryLastNodeId != undefined) {
         edgeGenerated = 
@@ -195,22 +379,36 @@ function addNode() {
 function interpretIRF(irf) {
     var i;
 
-    // First we draw the nodes
-    for (i = 0; i < irf.elements.length; i++) {
-        element = irf.elements[i];
-        if(element.node != undefined) {
-            createNode(element.node.type, element.node);
-        }
+   // First we draw the nodes
+    for (i = 0; i < irf.nodes.length; i++) {
+        // log(i);
+        element = irf.nodes[i];
+        createNode(element.type, element);
     }
 
     // Then we draw the edges
     // (so we are sure we can resolve sources/targets)
-    for (i = 0; i < irf.elements.length; i++) {
-        element = irf.elements[i];
-        if(element.edge != undefined) {
-            createEdge(element.edge.type, element.edge);
-        }
+    for (i = 0; i < irf.edges.length; i++) {
+        element = irf.edges[i];
+        createEdge(element.type, element);
     }
+
+    // // First we draw the nodes
+    // for (i = 0; i < irf.elements.length; i++) {
+    //     element = irf.elements[i];
+    //     if(element.node != undefined) {
+    //         createNode(element.node.type, element.node);
+    //     }
+    // }
+
+    // // Then we draw the edges
+    // // (so we are sure we can resolve sources/targets)
+    // for (i = 0; i < irf.elements.length; i++) {
+    //     element = irf.elements[i];
+    //     if(element.edge != undefined) {
+    //         createEdge(element.edge.type, element.edge);
+    //     }
+    // }
 }
 
 // --------------------------------------------------------
@@ -232,15 +430,24 @@ var uml = joint.shapes.uml;
 $('#initializeButton').attr('disabled', 'disabled');
 $('#shutdownButton').attr('disabled', 'disabled');
 $('#exitButton').attr('disabled', 'disabled');
+$('#didOpenButton').attr('disabled', 'disabled');
+$('#willSaveButton').attr('disabled', 'disabled');
+$('#didSaveButton').attr('disabled', 'disabled');
+$('#validateButton').attr('disabled', 'disabled');
+$('#validateWithErrorButton').attr('disabled', 'disabled');
+$('#svgButton').attr('disabled', 'disabled');
+$('#didCloseButton').attr('disabled', 'disabled');
+$('#didChangeButton').attr('disabled', 'disabled');
+
 
 // --------------------------------------------------------
 // UTILS 
 // --------------------------------------------------------
 
-// This function allows us to leg things in the bottom text box.
-function log(msg){
+// This function allows us to log things in the bottom text box.
+function log(_msg){
     currentText = $('#notification').val();
-    newText = currentText + "\n" + msg;
+    newText = currentText + "\n" + _msg;
     $('#notification').val(newText);
     $('#notification').scrollTop($('#notification')[0].scrollHeight);
 }
@@ -257,14 +464,44 @@ function printIRF() {
 
 // We use JRPC
 var jrpc = new simple_jsonrpc();
+var xhr = new XMLHttpRequest();
+// var socket = new WebSocket("ws://localhost:8080");
+
+// socket.onmessage = function(event) {
+//             jrpc.messageHandler(event.data);
+//         };
+
+// jrpc.toStream = function(_msg){
+//     log("Content-Length: "+_msg.length+"\n"+_msg);
+//             socket.send("Content-Length: "+_msg.length+"\n"+_msg);
+//         };
+
+// socket.onerror = function(error) {
+//             log("Error: " + error.message);
+//             console.error("Error: " + error.message);
+//         };
+
+// socket.onclose = function(event) {
+//             if (event.wasClean) {
+//                 console.info('Connection close was clean');
+//             } else {
+//                 console.error('Connection suddenly close');
+//             }
+//             console.info('close code : ' + event.code + ' reason: ' + event.reason);
+//         };
+
+//         socket.onopen = function(){
+// };
 
 // Basic configuration
 jrpc.toStream = function(_msg){
-    var xhr = new XMLHttpRequest();
+    
     xhr.onreadystatechange = function() {
+        // log("======== Ready State: "+xhr.readyState);
+        //     log(this.responseText);
         if (this.readyState != 4) return;
         if (this.responseText == undefined || this.responseText == "") return;
-        try {
+        try {            
             JSON.parse(this.responseText);
             jrpc.messageHandler(this.responseText);
         } catch (e){
@@ -276,44 +513,152 @@ jrpc.toStream = function(_msg){
     xhr.send(_msg);
 };
 
-// buttons
+// jrpc.on('window/showMessage', 'pass', function(result) {
+jrpc.on('window/showMessage', function(result) {
+
+    log(result.message);
+    console.log("Show message" + result);
+
+});
+
+//Load IRF form its definition
 function load() {
+
     interpretIRF(irf);
     $('#initializeButton').removeAttr('disabled');
+
 }
+
+
+//Instance of server capabilities we are to receive from the server
+var serverCapabilities = {}
 
 function initialize() {
+     
     iniParams = {
         "processId" : 0,
+        "rootPath" : null,
         "rootUri" : "C:\\Users\\jcanovasi\\git\\lsp\\HelloWorldLanguageServer",
+        "initializationOptions" : null,
         "capabilities" :  {
-            "textDocument" : null,
-            "workspace" : null,
+            "workspace" : {
+                "applyEdit" : true,
+                "workspaceEdit" : {
+                    "documentChanges" : true
+                },
+                "didChangeConfiguration" : {
+                    "dynamicRegistration" : true
+                },
+                "didChangeWatchedFiles" : {
+                    "dynamicRegistration" : false
+                },
+                "symbol" : {
+                    "dynamicRegistration" : true
+                },
+                "executeCommand" : {
+                    "dynamicRegistration" : true
+                },
+                "workspaceFolders" : false
+            },
+            "textDocument" : {
+                "synchronization" : {
+                    "willSave" : true,
+                    "willSaveWaitUntil" : true,
+                    "didSave" : true,
+                    "dynamicRegistration" : null
+                },
+                "completion" : {
+                    "completionItem" : null,
+                    "dynamicRegistration" : false
+                },
+                "hover" : {
+                    "dynamicRegistration" : false
+                },
+                "signatureHelp" : {
+                    "dynamicRegistration" : false
+                },
+                "references" : {
+                    "dynamicRegistration" : true
+                },
+                "documentHighlight" : {
+                    "dynamicRegistration" : true
+                },
+                "documentSymbol" : {
+                    "dynamicRegistration" : true
+                },             
+                "formatting" : {
+                    "dynamicRegistration" : false
+                },
+                "rangeFormatting" : {
+                    "dynamicRegistration" : false
+                },
+                "onTypeFormatting" : {
+                    "dynamicRegistration" : false
+                },
+                "definition" : {
+                    "dynamicRegistration" : true
+                },
+                "codeAction" : {
+                    "dynamicRegistration" : true
+                },
+                "codeLens" : {
+                    "dynamicRegistration" : true
+                },
+                "documentLink" : {
+                    "dynamicRegistration" : true
+                },
+                "rename" : {
+                    "dynamicRegistration" : true
+                }
+            },    
             "experimental" : null
-        }
+        },       
+        "clientName" : "Adrian - Language server client",
+        "trace" : "off"
     };
+
     jrpc.call('initialize', iniParams).then(function (result) {
-        log("Initialize message sent");
-        console.log(result);
+        serverCapabilities = result;
+        log("\nInitialize message sent");
+        log("Response: "+JSON.stringify(result));
+        console.log(JSON.stringify(result));
     });
+
     $('#initializeButton').attr('disabled', 'disabled');
     $('#shutdownButton').removeAttr('disabled');
+    $('#didOpenButton').removeAttr('disabled');
+    $('#willSaveButton').removeAttr('disabled');
+    $('#didSaveButton').removeAttr('disabled');
+    $('#validateButton').removeAttr('disabled');
+    $('#validateWithErrorButton').removeAttr('disabled');
+    $('#svgButton').removeAttr('disabled');
+    $('#didCloseButton').removeAttr('disabled');
+    $('#didChangeButton').removeAttr('disabled');
+    
+    
 }
 
+//Save model locally and export it to IRF syntax
 function save() {
-    //console.log(oldirf);
-    //console.log(JSON.stringify(irf, undefined, 2));
 
+    log("\nSaving model..."); 
+    
     var diffs = JsDiff.diffLines(oldirf, JSON.stringify(irf, undefined, 2));
 
     var linesIndex = 0; // This variable counts the lines in the irf
     var textDocumentContentChangeEvents = []; // The set of changes
+
     diffs.forEach(function(diff) {
+
         var lines = diff.count;
+
         if(diff.added == undefined && diff.removed == undefined) {
+
             // This diff does not signal any change, so we only add the lines
             linesIndex = linesIndex + lines; 
+        
         } else if (diff.added != undefined && diff.removed == undefined) {
+           
             // This diff signals that text was added
             // We build the LSP required element for didChange
             var textDocumentContentChangeEvent = {
@@ -323,10 +668,12 @@ function save() {
                 },
                 text : diff.value
             }
+            
             textDocumentContentChangeEvents.push(textDocumentContentChangeEvent);
+        
         } else if (diff.added == undefined && diff.removed != undefined) {
-            // This diff signals that text was removed
 
+            // This diff signals that text was removed
             // We need to calculate the ending col
             // We retrieve the changed text and count the number of characters of the last line
             var actualLines = diff.value.split("\n");         // We split the lines of the changes
@@ -341,46 +688,461 @@ function save() {
                 },
                 text : ""
             }
+
             textDocumentContentChangeEvents.push(textDocumentContentChangeEvent);
+        
         }
+    
     });
 
     // We send the changes using a didchange
     // We build the params
     didChangeTextDocumentParams = {
-        textDocument : "what?",
-        contentChanges : textDocumentContentChangeEvents
-    };
-    console.log(didChangeTextDocumentParams);
 
-    // We call by using LSP
-    jrpc.call('didChange', didChangeTextDocumentParams).then(function (result) {
-        log("dodChange sent");
-        console.log(result);
-    });
+        textDocument : JSON.stringify(irf),
+        contentChanges : textDocumentContentChangeEvents
+
+    };
+
+    log("Changes applied locally: " + JSON.stringify(didChangeTextDocumentParams));
 
     // We reset the last snapshot of the IRF
     oldirf = JSON.stringify(irf, undefined, 2);
+
 }
 
-function shutdown() {
-    jrpc.call('shutdown', null).then(function (result) {
-        log("Shutdown message sent");
-        console.log(result);
+//Notify server we've opened a document on the client side
+function didOpen() {
+    
+    var textDocumentItem = new Object(); 
+    textDocumentItem.uri        = "jsonFile.txt";
+    textDocumentItem.languageId = "json";
+    textDocumentItem.version    = 1;
+    textDocumentItem.text       = JSON.stringify(irf);
+
+    var didOpenTextDocumentParams = new Object();
+    didOpenTextDocumentParams.textDocument = textDocumentItem;
+
+    jrpc.call('textDocument/didOpen', didOpenTextDocumentParams).then(function (result) {
+        log("\ndidOpen message sent");
+        log("Response: "+ JSON.stringify(result));
     });
+
+}
+
+//Notify server model will be saved in the client side
+function willSave() {
+
+    var willSaveTextDocumentParams = new Object();
+    var didSaveTextDocumentParams  = new Object();
+    var textDocumentIdentifier     = new Object();
+    
+    //willSave notification
+    textDocumentIdentifier.uri              = "jsonFile.txt";
+    willSaveTextDocumentParams.textDocument = textDocumentIdentifier;
+    willSaveTextDocumentParams.reason       = "TextDocumentSaveReason.Manual";
+
+    jrpc.call('textDocument/willSave', willSaveTextDocumentParams).then(function (result) {
+        log("\nwillSave message sent");
+        log("Response: "+JSON.stringify(result));
+        console.log(JSON.stringify(result));
+    });
+
+}
+
+//Notify changes on the file
+function didChange(){
+
+    var diffs = JsDiff.diffLines(oldirf, JSON.stringify(irf, undefined, 2));
+
+    var linesIndex                      = 0; // This variable counts the lines in the irf
+    var lines                           = 0;
+    var positionStart                   = new Object();
+    var positionEnd                     = new Object();
+    var textDocumentContentChangeEvents = new Object();
+    var textDocumentRange               = new Object();
+
+    diffs.forEach(function(diff) {
+
+        lines = diff.count;
+
+        if(diff.added == undefined && diff.removed == undefined) {
+
+            // This diff does not signal any change, so we only add the lines
+            linesIndex = linesIndex + lines; 
+        
+        } else if (diff.added != undefined && diff.removed == undefined) {
+           
+            positionStart.line      = linesIndex + 1;
+            positionStart.character = 0;
+            positionEnd.line        = linesIndex + 1;
+            positionEnd.character   = 0;
+
+            textDocumentRange.start = positionStart;
+            textDocumentRange.end   = positionEnd;
+
+            textDocumentContentChangeEvents.range       = textDocumentRange;
+            textDocumentContentChangeEvents.rangeLength = 10;
+            textDocumentContentChangeEvents.text        = JSON.stringify(irf);
+        
+        } else if (diff.added == undefined && diff.removed != undefined) {
+
+            // This diff signals that text was removed
+            // We need to calculate the ending col
+            // We retrieve the changed text and count the number of characters of the last line
+            var actualLines = diff.value.split("\n");         // We split the lines of the changes
+            var lastLine    = actualLines[actualLines.length-2]; // We take the one previous to the last one. TODO: Control the array size!
+            var lastChar    = lastLine.length;                   // We count the characters
+
+
+            positionStart.line      = linesIndex + 1;
+            positionStart.character = 0;
+            positionEnd.line        = linesIndex + lines;
+            positionEnd.character   = lastChar + 1;
+            
+            textDocumentRange.start = positionStart;
+            textDocumentRange.end   = positionEnd;
+
+            textDocumentContentChangeEvents.range       = textDocumentRange;
+            textDocumentContentChangeEvents.rangeLength = 10;
+            textDocumentContentChangeEvents.text        = JSON.stringify(irf);
+        
+        }
+    
+    });
+
+
+    var versionedTextDocumentIdentifier     = new Object();
+    versionedTextDocumentIdentifier.version = 1;
+    versionedTextDocumentIdentifier.uri     = "jsonFile.txt";
+
+    var contentChangesList = [textDocumentContentChangeEvents];
+
+    var didChangeTextDocumentParams            = new Object();
+    didChangeTextDocumentParams.textDocument   = versionedTextDocumentIdentifier;
+    didChangeTextDocumentParams.contentChanges = contentChangesList;
+
+    jrpc.call('textDocument/didChange', didChangeTextDocumentParams).then(function (result) {
+        log("\ndidClhange message sent");
+        log("Response: "+ JSON.stringify(result));
+    });
+
+}
+
+
+//Notify the server we closed a document on the client side
+function didClose(){
+
+    var versionedTextDocumentIdentifier     = new Object();
+    versionedTextDocumentIdentifier.version = 1;
+    versionedTextDocumentIdentifier.uri     = "jsonFile.txt";
+
+    var didCloseTextDocumentParams = new Object();
+    didCloseTextDocumentParams.textDocument = versionedTextDocumentIdentifier;
+
+    jrpc.call('textDocument/didClose', didCloseTextDocumentParams).then(function (result) {
+        log("\ndidClose message sent");
+        log("Response: "+ JSON.stringify(result));
+    });
+
+}
+
+//Notify server model will be saved in the server side
+function didSave() {
+
+    var didSaveTextDocumentParams  = new Object();
+    var textDocumentIdentifier     = new Object();
+    
+    //didSave notification
+    textDocumentIdentifier.uri             = "jsonFile.txt";
+    didSaveTextDocumentParams.textDocument = textDocumentIdentifier;
+    didSaveTextDocumentParams.text         = JSON.stringify(irf);;
+
+    jrpc.call('textDocument/didSave', didSaveTextDocumentParams).then(function (result) {
+        log("\ndidSave message sent");
+        log("Response: "+JSON.stringify(result));
+        console.log(JSON.stringify(result));
+    });
+
+}
+
+//Validate model on the server side
+function validate() {
+
+    var executeCommandParams     = new Object();
+    executeCommandParams.command = "validate";
+
+    var argumentsList = [irf];
+
+    executeCommandParams.arguments = argumentsList;
+
+    jrpc.call('workspace/executeCommand', executeCommandParams).then(function (result) {
+        log("\nValidate message sent");
+        log("Response: "+ JSON.stringify(result));
+        console.log(JSON.stringify(result));
+    });
+  
+}
+
+//Validate model on the server side with an adhoc error, father sssociation missing
+function validateError() {
+
+    var irfWithError =
+    {
+       "rootElement": "Family",
+       "namedElementPackage": "family.model.family.impl.NamedElementImpl",
+       "implPackage": "family.model.family.impl.",
+       "nodes": [
+           {
+               "id": "1",
+               "type": "Family",
+               "abstract" : {
+                   "name" : "F1",
+                   "lastName" : "Ramirez"
+               },
+               "concrete" : { "width" : 100, "height" : 50 },
+               "diagram": {
+                   "x" : 50, 
+                   "y" : 40, 
+                   "z" : 0
+               },
+               "editorOptions": {
+                   "movable" : "True",
+                   "editable" : "True"
+               }           
+           },
+           {
+               "id": "2",
+               "type": "Member",
+               "abstract": {
+                   "name" : "M1",
+                   "firstName" : "Julio",
+                   "age" : 45,
+                   "gender" : "male"
+               },
+               "concrete" : { "width" : 100, "height" : 50 },
+               "diagram": {
+                   "x" : 160, 
+                   "y" : 40, 
+                   "z" : 0
+               },
+               "editorOptions": {
+                   "movable" : "True",
+                   "editable" : "True"
+               }               
+           },
+           {
+               "id": "3",
+               "type": "Member",
+               "abstract": {
+                   "name" : "M2",
+                   "firstName" : "Margarita",
+                   "age" : 40,
+                   "gender" : "female"
+               },
+               "concrete" : { "width" : 100, "height" : 50 },
+               "diagram": {
+                   "x" : 280, 
+                   "y" : 40, 
+                   "z" : 0
+               },
+               "editorOptions": {
+                   "movable" : "True",
+                   "editable" : "True"
+               }                   
+           },
+           {
+               "id": "4",
+               "type": "Member",
+               "abstract": {
+                   "name" : "M3",
+                   "firstName" : "Hugo",
+                   "age" : 15,
+                   "gender" : "male"
+               },
+               "concrete" : { "width" : 100, "height" : 50 },
+               "diagram": {
+                   "x" : 50, 
+                   "y" : 110, 
+                   "z" : 0
+               },
+               "editorOptions": {
+                   "movable" : "True",
+                   "editable" : "True"
+               }                       
+           },
+           {
+               "id": "5",
+               "type": "Member",
+               "abstract": {
+                   "name" : "M4",
+                   "firstName" : "Adrian",
+                   "age" : 8,
+                   "gender" : "male"
+               },
+               "concrete" : { "width" : 100, "height" : 50 },
+               "diagram": {
+                   "x" : 50, 
+                   "y" : 220, 
+                   "z" : 0
+               },
+               "editorOptions": {
+                   "movable" : "True",
+                   "editable" : "True"
+               }                       
+           },
+           {
+               "id": "6",
+               "type": "Member",
+               "abstract": {
+                   "name" : "M5",
+                   "firstName" : "Sofia",
+                   "age" : 10,
+                   "gender" : "female"
+               },  
+               "concrete" : { "width" : 100, "height" : 50 },        
+               "diagram": {
+                   "x" : 210, 
+                   "y" : 220, 
+                   "z" : 0
+               },
+               "editorOptions": {
+                   "movable" : "True",
+                   "editable" : "True"
+               }               
+           }       
+       ],
+       "edges": [
+           {
+               "id": "2",
+               "type": "default",
+               "origin": "1",
+               "target": "3",
+               "abstract": {
+                   "name" : "mother",
+                   "multiplicity" : "1",
+                   "containment" : "yes"
+               },
+               "editorOptions": {
+                   "movable" : "True",
+                   "editable" : "True"
+               }                                           
+           },
+           {
+               "id": "3",
+               "type": "default",
+               "origin": "1",
+               "target": "4",
+               "abstract": {
+                   "name" : "sons",
+                   "multiplicity" : "n",
+                   "containment" : "no"
+               },
+               "editorOptions": {
+                   "movable" : "True",
+                   "editable" : "True"
+               }                                           
+           },
+           {
+               "id": "4",
+               "type": "default",
+               "origin": "1",
+               "target": "5",
+               "abstract": {
+                   "name" : "sons",
+                   "multiplicity" : "n",
+                   "containment" : "no"
+               },
+               "editorOptions": {
+                   "movable" : "True",
+                   "editable" : "True"
+               }                               
+           },
+           {
+               "id": "5",
+               "type": "default",
+               "origin": "1",
+               "target": "6",
+               "abstract": {
+                   "name" : "daughters",
+                   "multiplicity" : "n",
+                   "containment" : "no"
+               },
+               "editorOptions": {
+                   "movable" : "True",
+                   "editable" : "True"
+               }                               
+           }       
+       ]    
+    }
+   
+    var executeCommandParams     = new Object();
+    executeCommandParams.command = "validate";
+
+    var argumentsList = [irfWithError];
+
+    executeCommandParams.arguments = argumentsList;
+
+    jrpc.call('workspace/executeCommand', executeCommandParams).then(function (result) {
+        log("\nValidate message sent");
+        log("Response: "+ JSON.stringify(result));
+        console.log(JSON.stringify(result));
+    });
+  
+}
+
+//Get SVG file from the server
+function getSVGFile() {
+
+    var executeCommandParams     = new Object();
+    executeCommandParams.command = "svg";
+
+    var argumentsList = ["myLanguage"];
+
+    executeCommandParams.arguments = argumentsList;
+
+    jrpc.call('workspace/executeCommand', executeCommandParams).then(function (result) {
+        log("\nSVG message sent");
+        log("Response: "+ JSON.stringify(result));
+        console.log(JSON.stringify(result));
+    });
+
+}
+
+//Shutdown wiht the language server
+function shutdown() {
+
+    jrpc.call('shutdown', null).then(function (result) {
+        log("\nShutdown message sent");
+        log("Response: "+ JSON.stringify(result));
+        console.log(JSON.stringify(result));
+    });
+
     $('#shutdownButton').attr('disabled', 'disabled');
     $('#exitButton').removeAttr('disabled');
-}
-
-function exit() {
-    jrpc.notification('exit', null);
-    log("Exit message sent");
-    $('#exitButton').attr('disabled', 'disabled');
     $('#initializeButton').removeAttr('disabled');
+
+    $('#didOpenButton').attr('disabled', 'disabled');
+    $('#willSaveButton').attr('disabled', 'disabled');
+    $('#didSaveButton').attr('disabled', 'disabled');
+    $('#validateButton').attr('disabled', 'disabled');
+    $('#validateWithErrorButton').attr('disabled', 'disabled');
+    $('#svgButton').attr('disabled', 'disabled');
+    $('#didCloseButton').attr('disabled', 'disabled');
+    $('#didChangeButton').attr('disabled', 'disabled');   
+    
 }
 
-jrpc.on('window/showMessage', 'pass', function(result) {
-    log(result.message);
-    console.log(result);
-});
+//Exit the language server
+function exit() {
+
+    jrpc.notification('exit', null);
+    log("\nExit message sent");
+
+    $('#shutdownButton').attr('disabled', 'disabled');
+    $('#exitButton').attr('disabled', 'disabled');
+
+}
+
+
 

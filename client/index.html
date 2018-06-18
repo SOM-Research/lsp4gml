@@ -38,7 +38,7 @@
 	</div>
 
 	<div class="row">
-		<button type="button" id="loadButton" class="btn btn-outline-primary" onclick="addNode()">Add Node</button>
+		<button type="button" id="addNodeButton" class="btn btn-outline-primary" onclick="addNode()">Add Node</button>
 	</div>
 
 	<div class="row">
@@ -47,11 +47,19 @@
 
 	<div class="row">
 		<button type="button" id="loadButton" class="btn btn-outline-primary" onclick="load()">LoadIRF</button>
-		<button type="button" id="initializeButton" class="btn btn-outline-primary" onclick="initialize()">Initialize</button>
-		<button type="button" id="initializeButton" class="btn btn-outline-primary" onclick="save()">Save</button>
+		<button type="button" id="initializeButton" class="btn btn-outline-primary" onclick="initialize()">Initialize</button>		
+		<button type="button" id="saveLocally" class="btn btn-outline-primary" onclick="save()">Save locally</button>
+		<button type="button" id="didOpenButton" class="btn btn-outline-primary" onclick="didOpen()">didOpen</button>
+		<button type="button" id="willSaveButton" class="btn btn-outline-primary" onclick="willSave()">willSave</button>
+		<button type="button" id="didSaveButton" class="btn btn-outline-primary" onclick="didSave()">didSave</button>
+		<button type="button" id="didChangeButton" class="btn btn-outline-primary" onclick="didChange()">didChange</button>
+		<button type="button" id="didCloseButton" class="btn btn-outline-primary" onclick="didClose()">didClose</button>
+		<button type="button" id="validateButton"class="btn btn-outline-primary" onclick="validate()">Validate</button>
+		<button type="button" id="validateWithErrorButton"class="btn btn-outline-primary" onclick="validateError()">Validate with error</button>
+		<button type="button" id="svgButton"class="btn btn-outline-primary" onclick="getSVGFile()">SVG File</button>
+		<button type="button" id="printIRFButton"class="btn btn-outline-primary" onclick="printIRF()">Print IRF</button>
 		<button type="button" id="shutdownButton"class="btn btn-outline-primary" onclick="shutdown()">Shutdown</button>
 		<button type="button" id="exitButton"class="btn btn-outline-primary" onclick="exit()">Exit</button>
-		<button type="button" id="exitButton"class="btn btn-outline-primary" onclick="printIRF()">Print IRF</button>
 	</div>
 	<div class="row">
 		<textarea id="notification" rows="5" required>Log messages will appear here...</textarea>
